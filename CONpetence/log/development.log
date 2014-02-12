@@ -1,0 +1,27 @@
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.6ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateConventions (20140212223322)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "conventions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "genre" varchar(255), "city" varchar(255), "venue" varchar(255), "start" datetime, "end" datetime, "expected_size" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140212223322"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (3.1ms)[0m  INSERT INTO "conventions" ("city", "created_at", "end", "expected_size", "genre", "name", "start", "updated_at", "venue") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)  [["city", "Baltimore, MD"], ["created_at", Wed, 12 Feb 2014 22:38:12 UTC +00:00], ["end", nil], ["expected_size", 30000], ["genre", "anime"], ["name", "Otakon"], ["start", nil], ["updated_at", Wed, 12 Feb 2014 22:38:12 UTC +00:00], ["venue", "Baltimore Convention Center"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddLinkToCons (20140212224032)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "conventions" ADD "con_url" varchar(255)[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140212224032"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mConvention Load (1.4ms)[0m  [1mSELECT "conventions".* FROM "conventions"[0m
+  [1m[35mConvention Load (0.2ms)[0m  SELECT "conventions".* FROM "conventions" WHERE "conventions"."name" = 'Otakon' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (3.4ms)[0m  UPDATE "conventions" SET "con_url" = ?, "updated_at" = ? WHERE "conventions"."id" = 1  [["con_url", "http://otakon.com/"], ["updated_at", Wed, 12 Feb 2014 22:45:31 UTC +00:00]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "conventions" ("city", "con_url", "created_at", "genre", "name", "updated_at", "venue") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["city", "Los Angeles, CA"], ["con_url", "http://www.gallifreyone.com/"], ["created_at", Wed, 12 Feb 2014 22:47:51 UTC +00:00], ["genre", "specific franchise"], ["name", "Gallifrey One"], ["updated_at", Wed, 12 Feb 2014 22:47:51 UTC +00:00], ["venue", "LAX Marriot"]]
+  [1m[35m (1.1ms)[0m  commit transaction
