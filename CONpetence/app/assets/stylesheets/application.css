@@ -11,3 +11,22 @@
  *= require_self
  *= require_tree .
  */
+
+ h1.logo {
+  font-size: 4em;
+  padding: 1px 5px 1px 5px;
+  background-color: red;
+  width: 250px;
+  text-align: center;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-family: Oswald, sans-serif;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+}
+
+.add {
+  margin-top: 25px;
+  margin-left: 20px;
+}
+
