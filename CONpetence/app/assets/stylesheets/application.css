@@ -30,3 +30,9 @@
   margin-left: 20px;
 }
 
+.photograph {max-width: 75px;
+              height: auto;
+              max-height: 75px;
+              width: auto;
+            }
+

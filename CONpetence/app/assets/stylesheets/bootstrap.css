@@ -4405,6 +4405,7 @@ a.list-group-item.active > .badge,
   display: block;
   padding: 4px;
   margin-bottom: 20px;
+  max-height: 75px;
   line-height: 1.42857143;
   background-color: #060606;
   border: 1px solid #dddddd;
@@ -5911,3 +5912,4 @@ legend {
 .affix {
   position: fixed;
 }
+

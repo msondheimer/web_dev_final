@@ -21,8 +21,6 @@ class ConventionsController < ApplicationController
 		end
 	end
 
-<<<<<<< HEAD
-
 	def add_photo
 		@con_id = params[:con_id]
 		#@con = Convention.find_by(:id => params[:con_id])
@@ -38,7 +36,7 @@ class ConventionsController < ApplicationController
 		p.save
 		redirect_to "/conventions/#{@the_con_id}/photos"
 	end
-=======
+
 	def new_con_form
 		@con = Convention.new
 		render 'new_con'
@@ -58,5 +56,4 @@ class ConventionsController < ApplicationController
 		redirect_to '/conventions'
 	end
 
->>>>>>> dandev
 end
