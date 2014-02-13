@@ -21,6 +21,7 @@ class ConventionsController < ApplicationController
 		end
 	end
 
+<<<<<<< HEAD
 
 	def add_photo
 		@con_id = params[:con_id]
@@ -37,4 +38,25 @@ class ConventionsController < ApplicationController
 		p.save
 		redirect_to "/conventions/#{@the_con_id}/photos"
 	end
+=======
+	def new_con_form
+		@con = Convention.new
+		render 'new_con'
+	end
+
+	def create
+		c = Convention.new
+		c.name = params["convention"]["name"]
+		c.genre = params['convention']['genre']
+		c.city = params['convention']['city']
+		c.venue = params['convention']['venue']
+		c.expected_size = params['convention']['expected_size']
+		c.con_url = params["convention"]["con_url"]
+		c.start = params['convention']['start']
+		c.end = params['convention']['end']
+		c.save
+		redirect_to '/conventions'
+	end
+
+>>>>>>> dandev
 end

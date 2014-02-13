@@ -10,13 +10,43 @@
 
 
 all_convention_data = [ { :name => "Otakon",
-				 :genre => "Multi-genre",
-				 :city => "Chicago, IL",
-				 :venue => "Donald E. Stephens Convention Center",
-				 :con_url => "http://www.wizardworld.com/home-ch.html",
-				 :expected_size => 70000,
-				 :start => "2013-08-21 00:00:00",
-				 :end => "2013-08-24 00:00:00"
+				 :genre => "Anime",
+				 :city => "Baltimore, MD",
+				 :venue => "Baltimore Convention Center",
+				 :con_url => "http://otakon.com",
+				 :expected_size => 35000,
+				 :start => "2013-08-09 09:00:00 EDT",
+				 :end => "2013-08-11 16:00:00 EDT"
+                },
+                {
+                	name: "Galifrey One",
+                	genre: "Franchise Specific",
+                	city: "Los Angeles, CA",
+                	venue: "LAX Marriott",
+                	con_url: "http://www.gallifreyone.com",
+                	expected_size: 3200,
+                	start: "2013-02-15 09:00:00 PST",
+                	:end => "2013-02-17 19:00:00 PST"
+                },
+                {
+                	name: "Gallfrey One",
+                	genre: "Franchise Specific",
+                	city: "Los Angeles, CA",
+                	venue: "LAX Marriott",
+                	con_url: "http://www.gallifreyone.com",
+                	expected_size: 3200,
+                	start: "2014-02-14 09:00:00 PST",
+                	:end => "2014-02-16 19:00:00 PST"
+                },
+                {
+                	name: "Anime Boston",
+                	genre: "Anime",
+                	city: "Boston, MA",
+                	venue: "Hynes Convention Center",
+                	con_url: "http://animeboston.com",
+                	expected_size: nil,
+                	start: "2014-03-21 09:00:00 EDT",
+                	:end => "2014-03-23 16:00:00 EDT"
                 }
             ]
 
