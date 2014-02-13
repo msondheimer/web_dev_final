@@ -11,7 +11,14 @@ class ConventionsController < ApplicationController
 	end
 
 	def browse_photos
-		render 'photos'
+		@con = Convention.find_by(:id => params[:con_id])
+		#If someone tries to see photos for a future con, that shouldn't be allowable.
+		if @con.start > Time.now
+			redirect_to "/conventions"
+		else
+			@photos = Photo.where(:con => params[:con_id])
+			render 'photos'
+		end
 	end
 
 end

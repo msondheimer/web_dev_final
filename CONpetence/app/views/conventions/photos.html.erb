@@ -1,1 +1,6 @@
-<p> Nothing here yet. </p>
+<%@photos.each do |photo| %>
+	<div>
+		<p> Here's a photo</p>
+		<%= link_to image_tag(photo.photo_url), photo.photo_url %>
+	</div>
+<% end %>
