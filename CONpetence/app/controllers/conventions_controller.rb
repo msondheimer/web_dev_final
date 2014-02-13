@@ -21,4 +21,20 @@ class ConventionsController < ApplicationController
 		end
 	end
 
+
+	def add_photo
+		@con_id = params[:con_id]
+		#@con = Convention.find_by(:id => params[:con_id])
+		render 'new_photo'
+	end
+
+	def new_photo
+		#@con = Convention.find_by(:id => params[:con_id])
+		@the_con_id = params["con_id"]
+		p = Photo.new
+		p.photo_url = params["image_url"]
+		p.con = @the_con_id
+		p.save
+		redirect_to "/conventions/#{@the_con_id}/photos"
+	end
 end

@@ -1,0 +1,21 @@
+<div class='container'>
+  <h2>Add a new photo </h2>
+</div>
+
+<form action="/conventions/<%= @con_id %>/photos/newphoto">
+
+
+
+    <div class="form-group">
+      <!-- DISPLAY AN IMAGE LABEL -->
+      <!-- DISPLAY A TEXT FIELD ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
+      <label for="title">Poster URL:</label>
+      <input type="text" name="image_url" class="form-control" id="title" placeholder="Enter URL to a comic poster image">
+    </div>
+    
+    <div class="actions">
+      <!-- DISPLAY A SUBMIT BUTTON WITH A CLASS OF 'btn btn-primary' -->
+      <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+</form>
+
