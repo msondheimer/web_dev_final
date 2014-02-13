@@ -15,8 +15,8 @@ all_convention_data = [ { :name => "Otakon",
 				 :venue => "Donald E. Stephens Convention Center",
 				 :con_url => "http://www.wizardworld.com/home-ch.html",
 				 :expected_size => 70000,
-				 :start => "2014-08-21 00:00:00",
-				 :end => "2014-08-24 00:00:00"
+				 :start => "2013-08-21 00:00:00",
+				 :end => "2013-08-24 00:00:00"
                 }
             ]
 
