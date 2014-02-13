@@ -1,0 +1,10 @@
+<% @cons.each do |con| %>
+
+	<div>
+		<h2> <%= link_to con.name, "/conventions/#{con.id}" %> </h2>
+		<h3> <%= "Type: #{con.genre}" %> </h3>
+		<p> <%= "From #{con.start} to #{con.end}" %> </p>
+		<p> <%= "Expected Size: #{con.expected_size}" %> </p>
+		<p> <%= "Location: #{con.venue}, #{con.city}" %> </p>
+	</div>
+<% end %>
