@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 20140213193915) do
     t.integer  "expected_size"
     t.datetime "start"
     t.datetime "end"
-    t.string   "logo_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
