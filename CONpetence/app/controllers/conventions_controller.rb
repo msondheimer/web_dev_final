@@ -10,4 +10,8 @@ class ConventionsController < ApplicationController
 		render 'show'
 	end
 
+	def browse_photos
+		render 'photos'
+	end
+
 end
