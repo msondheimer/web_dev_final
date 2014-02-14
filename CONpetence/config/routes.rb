@@ -4,6 +4,7 @@ CONpetence::Application.routes.draw do
 
   get '/conventions/:con_id/photos/newphoto' => 'conventions#new_photo'
   get '/conventions/:con_id/photos/add' => 'conventions#add_photo'
+  get '/photos/:photo_id' => 'photos#view_photo'
   get '/conventions' => 'conventions#browse_cons', :as => :cons
 
 
