@@ -5,7 +5,7 @@ class Convention < ActiveRecord::Base
 	#Go to google to find coords
 	#after_save
 
-	after_save :find_coords
+	before_save :find_coords
 
 	def find_coords
 		if self.city == nil
@@ -19,8 +19,13 @@ class Convention < ActiveRecord::Base
 			address = address.tr(" ", "+")
 			json_data = open("http://maps.googleapis.com/maps/api/geocode/json?address=#{address}&sensor=true").read()
 			data = JSON.parse(json_data)
-			self.lat = data['results'][0]['geometry']['location']['lat']
-			self.lon = data['results'][0]['geometry']['location']['lng']
+			begin
+				self.lat = data['results'][0]['geometry']['location']['lat']
+				self.lon = data['results'][0]['geometry']['location']['lng']
+			rescue NoMethodError
+				self.lat = nil
+				self.lon = nil
+			end
 		end
 		return self.lat, self.lon
 	end
