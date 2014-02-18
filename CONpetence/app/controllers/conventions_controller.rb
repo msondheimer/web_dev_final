@@ -1,7 +1,8 @@
 class ConventionsController < ApplicationController
 
 	def browse_cons
-		@cons = Convention.all.order("start asc")
+\
+		@cons = Convention.all
 		render 'conventions'
 	end
 
