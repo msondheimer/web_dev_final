@@ -1,5 +1,8 @@
 <p> <%="Here's a photo from #{@con.name} #{@con.start.year}" %> </p>
 <p> <%= link_to image_tag(@photo.photo_url), @photo.photo_url %> </p>
 <h2> Characters in this photo include: </h2>
+	<% @char_tags.each do |ch_tag| %>
+	<p> <%= Character.find_by(id: ch_tag.character).name %> </p>
+	<% end %>
 
 <h2> Users in this photo include: </h2>

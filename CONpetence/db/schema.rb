@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140213193915) do
+ActiveRecord::Schema.define(version: 20140217211533) do
+
+  create_table "char_tags", force: true do |t|
+    t.integer  "photo"
+    t.integer  "character"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "characters", force: true do |t|
+    t.string   "name"
+    t.string   "franchise"
+    t.text     "cosplaying"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "conventions", force: true do |t|
     t.string   "name"
@@ -24,6 +39,8 @@ ActiveRecord::Schema.define(version: 20140213193915) do
     t.datetime "end"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "lat"
+    t.float    "lon"
   end
 
   create_table "photos", force: true do |t|
