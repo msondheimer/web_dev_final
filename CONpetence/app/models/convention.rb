@@ -31,14 +31,11 @@ class Convention < ActiveRecord::Base
 	end
 
 
-	scope :future, -> {where("end > ?", Time.now).order("start asc")}
+	scope :future, -> {where("end >= ?", Time.now).order("start asc")}
 
-	scope :past, -> {where("start < ?", Time.now).order("start desc")}
+	scope :past, -> {where("start <= ?", Time.now).order("start desc")}
 
-	def Convention.present
-		return Convention.where("start < ? AND end > ?", Time.now, Time.now)
-	end
-	#scope :present -> 
+	scope :present, ->{future.past} 
 
 	scope :genre, ->(gen) {where("genre = ?", gen)}
 end
