@@ -9,7 +9,7 @@ class Convention < ActiveRecord::Base
 	def Convention.present
 		return Convention.where("start < ? AND end > ?", Time.now, Time.now)
 	end
-	scope :present -> 
+	#scope :present -> 
 
 	scope :genre, ->(gen) {where("genre = ?", gen)}
 end

@@ -1,7 +1,12 @@
-<p> <%= link_to "Add a photo", "/conventions/#{@con.id}/photos/add", class: 'btn btn-success pull-right add' %></p>
-<%@photos.each do |photo| %>
-	<div>
-		<p> Here's a photo</p>
-		<%= link_to image_tag(photo.photo_url), "/photos/#{photo.id}"%>
-	</div>
+<p> <%= link_to "Add a photo", "/conventions/#{@con.id}/photos/add", class: 'btn btn-success pull-center add' %></p>
+
+
+<% @photos.in_groups_of(4, false).each_with_index do |group, index| %>
+ <div class="row">
+<% group.each do |photo| %>
+	  <div class='col-md-3 test'>
+		<%= link_to image_tag(photo.photo_url, height: '300'),  "/photos/#{photo.id}", :class => 'img-responsive' %>
+      </div>
+    <% end %>
+  </div>
 <% end %>
