@@ -38,4 +38,6 @@ class Convention < ActiveRecord::Base
 	scope :present, ->{future.past} 
 
 	scope :genre, ->(gen) {where("genre = ?", gen)}
+
+	has_many :photos, foreign_key: "con"
 end
