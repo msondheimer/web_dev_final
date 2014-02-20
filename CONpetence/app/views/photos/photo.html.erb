@@ -1,9 +1,6 @@
 <h1> <%="Here's a photo from #{@con.name} #{@con.start.year}" %> </h1>
-<div>
-    	<div class="dan-big-chart">
-        	<%= link_to image_tag(@photo.photo_url), @photo.photo_url%>
-    	</div>
-
+<div class='col-lg-1'>
+<p> <%= link_to image_tag(@photo.photo_url, height: "500"), @photo.photo_url %> </p>
 
 <h2> Characters in this photo include: </h2>
 	<% @char_tags.each do |ch_tag| %>
