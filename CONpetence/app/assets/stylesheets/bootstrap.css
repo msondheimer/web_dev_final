@@ -5937,3 +5937,17 @@ legend {
   max-width: 300px;
 }
 
+.dan-big-chart  {
+  text-align: left;
+  margin: 20px;
+  vertical-align: bottom;
+}
+
+/*.chart:hover {
+  background: #fbf6ba;
+}*/
+.dan-big-chart img {
+  max-height: 450px;
+  max-width: 800px;
+}
+
