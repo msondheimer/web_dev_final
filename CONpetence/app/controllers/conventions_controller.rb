@@ -16,7 +16,7 @@ class ConventionsController < ApplicationController
 		if @con.start > Time.now
 			redirect_to "/conventions"
 		else
-			@photos = Photo.where(:con => params[:con_id])
+			@photos = @con.photos
 			render 'photos'
 		end
 	end

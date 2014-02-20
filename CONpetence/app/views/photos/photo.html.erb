@@ -6,8 +6,8 @@
 
 
 <h2> Characters in this photo include: </h2>
-	<% @char_tags.each do |ch_tag| %>
-	<p> <%= Character.find_by(id: ch_tag.character).name %> </p>
+	<% @characters.each do |char| %>
+	<p> <%= char.name %> </p>
 	<% end %>
 
 <h2> Users in this photo include: </h2>

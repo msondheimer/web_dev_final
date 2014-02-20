@@ -5,8 +5,8 @@ class PhotosController < ApplicationController
 		if @photo == nil
 			redirect_to "/conventions"
 		else
-			@con = Convention.find_by(id: @photo.con)
-			@char_tags = CharTag.where(photo: @photo.id)
+			@con = @photo.convention
+			@characters = @photo.characters
 			render 'photo'
 		end
 	end

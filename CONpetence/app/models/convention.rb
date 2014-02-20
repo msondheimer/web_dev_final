@@ -39,5 +39,5 @@ class Convention < ActiveRecord::Base
 
 	scope :genre, ->(gen) {where("genre = ?", gen)}
 
-	has_many :photos, foreign_key: "con"
+	has_many :photos, class_name: "Photo", foreign_key: "con"
 end
