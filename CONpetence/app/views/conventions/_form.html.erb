@@ -1,5 +1,7 @@
 <%# Let's step up some form validation for this. Melissa has volunteered %>
 
+<div class='col-lg-6'>
+
 <%= form_for @con do |f| %>
       <div class="form-group">
         <!-- DISPLAY A TITLE LABEL -->
@@ -23,11 +25,13 @@
         <%=f.text_field :venue, :placeholder => "Venue" %>
         <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
       </div>
+      <div class="grid-12-12">
       <div class="form-group">
         <!-- DISPLAY A DESCRIPTION LABEL -->
         <%=f.text_field :start, :placeholder => "When does it start YYYY-MM-DD HH:MM:SS ZON" %>
         <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
       </div>
+    </div>
       <div class="form-group">
         <!-- DISPLAY A DESCRIPTION LABEL -->
         <%=f.text_field :end, :placeholder => "When does it end YYYY-MM-DD HH:MM:SS ZON" %>
@@ -48,3 +52,6 @@
       <!-- DISPLAY A SUBMIT BUTTON WITH A CLASS OF 'btn btn-primary' -->
     </div>
   <% end %>
+    </div>
+
+

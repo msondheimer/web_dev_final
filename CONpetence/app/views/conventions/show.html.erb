@@ -1,5 +1,10 @@
 
+
+<div class="mel-padding ">
 <h2> <%= link_to @con.name, @con.con_url %> </h2>
+</div>
+
 <% if @con.start < Time.now %>
-	<p> <%= link_to "View photos from con", "/conventions/#{@con.id}/photos" %></p>
+	<p> <%= link_to "View photos from con", "/conventions/#{@con.id}/photos", class: 'btn btn-success pull-center add' %>
+	<%= link_to "View all Conventions", "/conventions", class: 'btn btn-success pull-center add' %></p>
 <% end %>

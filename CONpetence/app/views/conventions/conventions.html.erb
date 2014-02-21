@@ -1,6 +1,8 @@
-<%= link_to "Add New Con", "/conventions/new" %>
+<p><%= link_to "Add New Con", "/conventions/new", class: 'btn btn-success pull-center add' %>
 
-<%= link_to "Search Cons", "/conventions/search" %>
+<%= link_to "Search Cons", "/conventions/search", class: 'btn btn-success pull-center add'  %></p>
+
+<div class="mel-padding ">
 
 <% @cons.each do |con| %>
 
@@ -12,3 +14,4 @@
 		<p> <%= "Location: #{con.venue}, #{con.city}" %> </p>
 	</div>
 <% end %>
+</div>
