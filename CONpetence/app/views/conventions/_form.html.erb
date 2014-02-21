@@ -10,9 +10,7 @@
       </div>
       <div class="form-group">
         <!-- DISPLAY A DESCRIPTION LABEL -->
-        <%genres = ['Anime', 'Comics', 'Sci-Fi', 'Gaming', 'Steampunk', 'Specific Franchise', 'Multigenre', 'Horror'].sort
-          genre_opts = genres.zip(genres) %>
-        <%=f.select :genre, options_for_select(genre_opts)%>
+        <%=f.select :genre, options_for_select(Convention.genre_opts)%>
         <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
       </div>
       <div class="form-group">

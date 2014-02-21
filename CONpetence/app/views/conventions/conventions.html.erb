@@ -2,6 +2,16 @@
 
 <%= link_to "Search Cons", "/conventions/search", class: 'btn btn-success pull-center add'  %></p>
 
+<!-- <p>
+	Filter conventions by genre 
+	<%#= form_tag controller: :conventions, action: :filter, method: :get do%>
+        <%#= select_tag :genre,  options_for_select(Convention.genre_opts)%>
+
+        <%#= submit_tag 'Submit', class: 'btn btn-default' %>
+
+	<%# end %>
+</p> -->
+
 <div class="mel-padding ">
 
 <% @cons.each do |con| %>

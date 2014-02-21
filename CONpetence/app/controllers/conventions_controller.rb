@@ -1,7 +1,12 @@
 class ConventionsController < ApplicationController
 
 	def browse_cons
-		@cons = Convention.all.order("start asc")
+		@cons = Convention.all.has_time.order("start asc")
+		render 'conventions'
+	end
+
+	def filter
+		@cons = Convention.genre(params[:genre]).has_time.order("start asc")
 		render 'conventions'
 	end
 

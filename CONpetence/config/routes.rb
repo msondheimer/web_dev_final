@@ -9,6 +9,8 @@ CONpetence::Application.routes.draw do
   get '/photos' => 'photos#redir_to_cons'
   get '/conventions' => 'conventions#browse_cons', :as => :cons
 
+  get '/conventions/filter/:genre' => 'conventions#filter'
+
 
 
   get '/conventions/new' => 'conventions#new_con_form'
