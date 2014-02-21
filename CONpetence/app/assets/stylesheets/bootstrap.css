@@ -5915,8 +5915,8 @@ legend {
 
 .dan-chart {
   text-align: center;
-  margin: 20px;
-  vertical-align: bottom;
+  margin: 5px;
+  vertical-align: middle;
 }
 .dan-col-md-4 {
   float: left;

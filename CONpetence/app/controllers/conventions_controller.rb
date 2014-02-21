@@ -7,6 +7,9 @@ class ConventionsController < ApplicationController
 
 	def show
 		@con = Convention.find_by(:id => params[:con_id])
+		if @con == nil
+			redirect_to "/conventions"
+		end
 		render 'show'
 	end
 

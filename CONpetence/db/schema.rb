@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217211533) do
+ActiveRecord::Schema.define(version: 20140221005252) do
 
   create_table "char_tags", force: true do |t|
     t.integer  "photo"
@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 20140217211533) do
     t.string   "venue"
     t.string   "con_url"
     t.integer  "expected_size"
-    t.datetime "start"
-    t.datetime "end"
+    t.date     "start"
+    t.date     "end"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "lat"
@@ -49,6 +49,10 @@ ActiveRecord::Schema.define(version: 20140217211533) do
     t.integer  "posting_user"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
 end
