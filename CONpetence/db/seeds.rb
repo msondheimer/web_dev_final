@@ -77,7 +77,7 @@ all_convention_data.each do |convention_info|
     photos.each do |ph|
       p = Photo.new
       p.photo_url = ph[:photo]
-      p.con = c.id
+      p.convention_id = c.id
       p.save
     end
   end

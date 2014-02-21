@@ -11,19 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140221005252) do
+ActiveRecord::Schema.define(version: 20140221204041) do
+
+  create_table "appearances", force: true do |t|
+    t.integer  "character_id"
+    t.integer  "franchise_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "char_tags", force: true do |t|
-    t.integer  "photo"
-    t.integer  "character"
+    t.integer  "photo_id"
+    t.integer  "character_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "characters", force: true do |t|
     t.string   "name"
-    t.string   "franchise"
     t.text     "cosplaying"
+    t.integer  "character_group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -43,9 +50,15 @@ ActiveRecord::Schema.define(version: 20140221005252) do
     t.float    "lon"
   end
 
+  create_table "franchises", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "photos", force: true do |t|
     t.string   "photo_url"
-    t.integer  "con"
+    t.integer  "convention_id"
     t.integer  "posting_user"
     t.datetime "created_at"
     t.datetime "updated_at"

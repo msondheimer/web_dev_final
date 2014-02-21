@@ -6,6 +6,7 @@ class ConventionsController < ApplicationController
 	end
 
 	def show
+		#***nil is not working!***
 		@con = Convention.find_by(:id => params[:con_id])
 		if @con == nil
 			redirect_to "/conventions"
@@ -27,7 +28,7 @@ class ConventionsController < ApplicationController
 	def add_photo
 		@con_id = params[:con_id]
 		#@con = Convention.find_by(:id => params[:con_id])
-		render 'new_photo'
+		render 'temp'
 	end
 
 	def new_photo
@@ -35,7 +36,7 @@ class ConventionsController < ApplicationController
 		@the_con_id = params["con_id"]
 		p = Photo.new
 		p.photo_url = params["image_url"]
-		p.con = @the_con_id
+		p.convention_id = @the_con_id
 		p.save
 		redirect_to "/conventions/#{@the_con_id}/photos"
 	end

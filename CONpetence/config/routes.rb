@@ -3,7 +3,7 @@ CONpetence::Application.routes.draw do
   root 'conventions#browse_cons'
 
   get '/convention/search' => 'conventions#search'
-  get '/conventions/:con_id/photos/newphoto' => 'conventions#new_photo'
+  post '/conventions/:con_id/photos/newphoto' => 'conventions#new_photo'
   get '/conventions/:con_id/photos/add' => 'conventions#add_photo'
   get '/photos/:photo_id' => 'photos#view_photo'
   get '/photos' => 'photos#redir_to_cons'
