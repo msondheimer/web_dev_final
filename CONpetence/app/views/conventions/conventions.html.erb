@@ -1,15 +1,17 @@
 <p><%= link_to "Add New Con", "/conventions/new", class: 'btn btn-success pull-center add' %>
 
 
-
 	<%= form_tag controller: :conventions, action: :filter, method: :get do%>
-        <%= select_tag :genre,  options_for_select(Convention.genre_opts)%>
-        <%= submit_tag 'Submit', class: 'btn btn-default' %>
-	<% end %>
+		Select the kind of Cons you are interested in: 
+          <%= select_tag :genre,  options_for_select([["All", "All"]] + Convention.genre_opts, @genre_name), :onchange => 'this.form.submit()' %>
+
+      <% end %>
+
+
+
 </p>
 
 <div class="mel-padding ">
-
 <% @cons.each do |con| %>
 	<div>
 		<h2> <%= link_to con.name, "/conventions/#{con.id}" %> </h2>

@@ -1,6 +1,7 @@
 class ConventionsController < ApplicationController
 
 	def browse_cons
+		@genre_name = 'All'
 		@cons = Convention.all.has_time.order("start asc")
 		render 'conventions'
 	end
@@ -13,7 +14,9 @@ class ConventionsController < ApplicationController
 
 	def filter
 		#@cons = Convention.find_by(:genre => params[:genre])
-		@cons = Convention.genre(params[:genre]).has_time.order("start asc")
+		@genre_name = params[:genre]
+		@cons = Convention.genre(@genre_name).has_time.order("start asc")
+
 		render 'conventions'
 	end
 

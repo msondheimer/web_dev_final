@@ -31,6 +31,9 @@ class Convention < ActiveRecord::Base
 		return ['Anime', 'Comics', 'Sci-Fi', 'Gaming', 'Steampunk', 'Specific Franchise', 'Multigenre', 'Horror'].sort
 	end
 	def Convention.genre_opts
+		# if Convention.genres == 'All'
+		# 	return Convention.genres.zip
+		# end
 		return Convention.genres.zip(Convention.genres)
 	end
 
@@ -40,7 +43,11 @@ class Convention < ActiveRecord::Base
 
 	scope :present, ->{future.past} 
 
-	scope :genre, ->(gen) {where("genre = ?", gen)}
+	scope :genre, ->(gen) {if gen == 'All'
+								all().order("start asc")
+							else
+								where("genre = ?", gen).order("start asc")
+							end}
 
 	scope :has_time, -> {where.not(start: nil)}
 
