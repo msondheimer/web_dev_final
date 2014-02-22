@@ -2,7 +2,8 @@ CONpetence::Application.routes.draw do
 
   root 'conventions#browse_cons'
 
-  get '/convention/search' => 'conventions#search'
+  post '/conventions/filter' => 'conventions#filter'
+  get '/conventions/:genre/filter' => 'conventions#filter'
   post '/conventions/:con_id/photos/newphoto' => 'conventions#new_photo'
   get '/conventions/:con_id/photos/add' => 'conventions#add_photo'
   get '/photos/:photo_id' => 'photos#view_photo'

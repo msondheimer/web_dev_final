@@ -5,7 +5,14 @@ class ConventionsController < ApplicationController
 		render 'conventions'
 	end
 
+	# def filter
+	# 	@cons = Convention.genre(params[:genre]).has_time.order("start asc")
+	# 	render 'conventions'
+	# end
+
+
 	def filter
+		#@cons = Convention.find_by(:genre => params[:genre])
 		@cons = Convention.genre(params[:genre]).has_time.order("start asc")
 		render 'conventions'
 	end
