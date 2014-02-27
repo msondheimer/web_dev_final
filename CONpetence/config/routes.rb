@@ -2,6 +2,10 @@ CONpetence::Application.routes.draw do
 
   root 'conventions#browse_cons'
 
+  post '/photos/:photo_id/addchar/' => 'photos#tag_char', :as => :addchar
+
+  delete '/photos/:photo_id/delete/:chartag' => 'photos#toast_char'
+
   post '/conventions/filter' => 'conventions#filter'
   post '/conventions/:con_id/photos/newphoto' => 'conventions#new_photo'
   get '/conventions/:con_id/photos/add' => 'conventions#add_photo'
@@ -19,5 +23,7 @@ CONpetence::Application.routes.draw do
   get '/conventions/:con_id' => 'conventions#show', :as => :con
 
   post '/conventions' => 'conventions#create'
+
+
   
 end

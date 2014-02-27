@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140221204041) do
+ActiveRecord::Schema.define(version: 20140227200711) do
 
   create_table "appearances", force: true do |t|
     t.integer  "character_id"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20140221204041) do
     t.datetime "updated_at"
     t.float    "lat"
     t.float    "lon"
+    t.text     "description"
   end
 
   create_table "franchises", force: true do |t|

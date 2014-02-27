@@ -72,7 +72,7 @@ all_convention_data.each do |convention_info|
     c.expected_size = size
     c.start = start
     c.end = Date.parse(start.to_s) + convention_info[:length] - 1
-    c.find_coords 
+    #c.find_coords 
     c.save
     photos.each do |ph|
       p = Photo.new
@@ -81,6 +81,12 @@ all_convention_data.each do |convention_info|
       p.save
     end
   end
+end
+
+blarg = Convention.where(lat: nil)
+blarg.each do |con|
+  con.find_coords
+  con.save
 end
 
 

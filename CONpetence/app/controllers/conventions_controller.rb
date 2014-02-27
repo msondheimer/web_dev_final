@@ -25,8 +25,9 @@ class ConventionsController < ApplicationController
 		@con = Convention.find_by(:id => params[:con_id])
 		if @con == nil
 			redirect_to "/conventions"
+		else
+			render 'show'
 		end
-		render 'show'
 	end
 
 	def browse_photos

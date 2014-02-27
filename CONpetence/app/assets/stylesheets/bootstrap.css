@@ -5956,3 +5956,14 @@ legend {
   padding-left: 20px;
 }
 
+#dan-submit{
+  width: 15%;
+  float: left;
+
+}
+
+#dan-characters{
+  width: 60%;
+  float: right;
+}
+

@@ -5,10 +5,33 @@
     	</div>
 
 
+
 <h2> Characters in this photo include: </h2>
 	<% @characters.each do |char| %>
-	<p> <%= char.name %> </p>
-	<% end %>
+	<p> 
+		<%= char.name %> 
+		<%= form_tag "/photos/#{@photo.id}/delete/#{@photo.char_tags.find_by(character_id: char).id}", method: :delete do %>
+			<%= submit_tag 'Delete this character', class: "btn btn-success" %>
+		<% end %>
+	</p>
 
+	<% end %>
+	<div>
+<div class="row">
+	<div class="col-md-4">
+    	<%= form_tag "/photos/#{@photo.id}/addchar", method: :post do%>
+    	 <div class ="form-group">
+    	 	<div id="dan-submit">
+    	 <%= submit_tag 'Add Character Tag', class: 'pull-left btn btn-success btn-large' %>
+    	</div>
+    	<div id="dan-characters">
+         <%= select_tag :character_id, options_from_collection_for_select(Character.all.order('name asc'), :id, :name), class: 'form-control' %>
+     </div>
+     </div>
+      
+    	<% end %>
+    </div></div>
+
+<div>
 <h2> Users in this photo include: </h2>
 </div>

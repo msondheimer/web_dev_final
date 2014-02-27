@@ -1,8 +1,21 @@
 
 
 <div class="mel-padding ">
-<h2> <%= link_to @con.name, @con.con_url %> </h2>
+<h2> 
+	<% if @con.end > Time.now %>
+		<%= link_to "#{@con.name} #{@con.start.year}", @con.con_url %>
+	</h2>
+	<% else %>
+		<%= "#{@con.name} #{@con.start.year}" %>
+	</h2>
+		<% if Convention.next(@con.name) %>
+			<p><%= link_to "Click to see the upcoming #{@con.name}", "/conventions/#{Convention.next(@con.name).id}" %></p>
+		<% end %>
+	<% end %>
+
 </div>
+
+<p> <%= @con.description %> </p>
 
 <% if @con.start < Time.now %>
 	<p> <%= link_to "View photos from con", "/conventions/#{@con.id}/photos", class: 'btn btn-success pull-center add' %>

@@ -13,6 +13,9 @@ class Convention < ActiveRecord::Base
 			self.lon = nil
 		else
 			address = self.city.chomp
+			if self.venue != nil
+				address += "+#{self.venue.chomp}"
+			end
 			address = address.tr(" ", "+")
 			json_data = open("http://maps.googleapis.com/maps/api/geocode/json?address=#{address}&sensor=true").read()
 			data = JSON.parse(json_data)
@@ -24,7 +27,7 @@ class Convention < ActiveRecord::Base
 				self.lon = nil
 			end
 		end
-		return self.lat, self.lon
+		return data
 	end
 
 	def Convention.genres
@@ -43,13 +46,19 @@ class Convention < ActiveRecord::Base
 
 	scope :present, ->{future.past} 
 
-	scope :genre, ->(gen) {if gen == 'All'
-								all().order("start asc")
-							else
-								where("genre = ?", gen).order("start asc")
-							end}
+	def Convention.genre(gen)
+		if gen == 'All'
+			all().order("start asc")
+		else
+			where("genre = ?", gen).order("start asc")
+		end
+	end
 
 	scope :has_time, -> {where.not(start: nil)}
+
+	def Convention.next(name) 
+		Convention.future.find_by(name: "#{name}")
+	end
 
 	has_many :photos
 end
