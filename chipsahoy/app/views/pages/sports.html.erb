@@ -1,0 +1,17 @@
+<h1 class="page-header">Hello <%= @username %></h1>
+
+<h2>Sports</h2>
+
+<% if session[:username].blank? %>
+  <p class="lead">
+    You need to login to see this data.
+  </p>
+<% else %>
+  <ol>
+    <li>Hockey</li>
+    <li>Baseball</li>
+    <li>Hockey</li>
+    <li>Curling</li>
+    <li>Football</li>
+  </ol>
+<% end %>
