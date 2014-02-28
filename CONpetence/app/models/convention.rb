@@ -61,4 +61,29 @@ class Convention < ActiveRecord::Base
 	end
 
 	has_many :photos
+
+	def is_within(lat, lon, dist)
+		lat_dist = (self.lat - lat) * 24859.82 / 360 
+		circ_at_lat = Math.cos(self.lat * Math::PI / 180) * 24901.55
+		lon_dist = (self.lon - lon) * circ_at_lat / 360
+		return Math.sqrt(lat_dist**2 + lon_dist**2) <= dist
+	end
+
+	# def Convention.within(location, dist){
+	# 	loc = location.chomp
+	# 	loc = loc.tr(" ", "+")
+
+	# 	#Get info from google.
+	# 	json_data = open("http://maps.googleapis.com/maps/api/geocode/json?address=#{loc}&sensor=true").read()
+	# 	data = JSON.parse(json_data)
+
+	# 	#Print the info.
+	# 	begin
+	# 		coord_lat = data['results'][0]['geometry']['location']['lat']
+	# 		coord_lon = data['results'][0]['geometry']['location']['lng']
+	# 	rescue NoMethodError
+	# 		return Convention.where(id: -1)
+	# 	end
+	# 	return Covnetion.where
+	# }
 end

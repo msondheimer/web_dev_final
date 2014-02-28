@@ -1,0 +1,6 @@
+<%= link_to "Add new photo", "/photos/new" %>
+
+<% @photos.each do |ph| %>
+	<p> <%= ph.name %> </p>
+	<p> <%= image_tag ph.picture.url %> </p>
+<% end %>
