@@ -34,4 +34,12 @@
 
 <div>
 <h2> Users in this photo include: </h2>
+    <% @users.each do |user| %>
+    <p> 
+        <%= user.name %> 
+    </p>
+
+    <% end %>
+
+
 </div>

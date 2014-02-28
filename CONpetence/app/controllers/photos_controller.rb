@@ -15,6 +15,8 @@ class PhotosController < ApplicationController
 		else
 			@con = @photo.convention
 			@characters = @photo.characters
+			@users = @photo.users
+			if 
 			render 'photo'
 		end
 	end

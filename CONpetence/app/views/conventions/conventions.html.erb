@@ -1,6 +1,4 @@
-<p><%= link_to "Add New Con", "/conventions/new", class: 'btn btn-success pull-center add' %>
-
-
+<p>
 	<%= form_tag controller: :conventions, action: :filter, method: :get do%>
 		Select the kind of Cons you are interested in: 
           <%= select_tag :genre,  options_for_select([["All", "All"]] + Convention.genre_opts, @genre_name), :onchange => 'this.form.submit()' %>

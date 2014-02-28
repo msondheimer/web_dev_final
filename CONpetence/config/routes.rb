@@ -23,6 +23,9 @@ CONpetence::Application.routes.draw do
   get '/conventions/:con_id' => 'conventions#show', :as => :con
 
   post '/conventions' => 'conventions#create'
+  get "/logout" => "sessions#destroy", as: 'logout'
+  resources :users, only: [:new, :create]
+  resources :sessions
 
 
   
