@@ -1,5 +1,8 @@
 class ConventionsController < ApplicationController
 
+	before_action :require_login, :only => [:add_photo, :create, :new_con_form]
+ 
+
 	def browse_cons
 		@genre_name = 'All'
 		@cons = Convention.all.has_time.order("start asc")
