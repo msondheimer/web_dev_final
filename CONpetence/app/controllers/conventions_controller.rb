@@ -55,12 +55,15 @@ class ConventionsController < ApplicationController
 		#@con = Convention.find_by(:id => params[:con_id])
 		@the_con_id = params["con_id"]
 	  	@photo = Photo.create( user_params )
-	  	redirect_to 'conventions/@the_con_id/photos'
+	  	@photo.convention_id = @the_con_id
+	  	@photo.posting_user = session[:user_id]
+	  	@photo.save
+	  	redirect_to "/conventions/#{@the_con_id}/photos"
 	end
 
 	private
 	def user_params
-		params.require(:photo).permit(:name, :picture)
+		params.require(:photo).permit(:picture)
 	end
 
 	def new_con_form

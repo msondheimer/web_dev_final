@@ -6,7 +6,7 @@
 <div>
 	<% @photos.each do |photo| %>
     	<div class="dan-col-md-4 dan-chart dan-well">
-        	<%= link_to image_tag(photo.photo_url), "/photos/#{photo.id}" %>
+        	<%= link_to image_tag(photo.picture.url), "/photos/#{photo.id}" %>
     	</div>
 	<% end %>
 </div>
