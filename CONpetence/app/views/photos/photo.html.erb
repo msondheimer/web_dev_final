@@ -40,6 +40,13 @@
     </p>
 
     <% end %>
+    <% if not @guest %>
+        <div>
+            <%= form_tag @link, method: @method do%>
+            <%= submit_tag @text, class: 'btn btn-success btn-large' %>
+            <% end %>
+        </div>
+    <% end %>
 
 
 </div>

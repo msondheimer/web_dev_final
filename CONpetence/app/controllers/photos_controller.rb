@@ -16,13 +16,42 @@ class PhotosController < ApplicationController
 			@con = @photo.convention
 			@characters = @photo.characters
 			@users = @photo.users
-			if 
+			@guest = true
+			if session[:user_id]
+				@guest = false
+				if @photo.in_photo?(session[:user_id])
+					@link = "/photos/#{@photo.id}/untagme"
+					@method = :delete
+					@text = "Untag Me"
+				else
+					@link = "/photos/#{@photo.id}/tagme"
+					@method = :post
+					@text = "Tag Me"
+				end
+			end
 			render 'photo'
 		end
 	end
 
 	def toast_char
 		CharTag.find_by(id: params[:chartag]).destroy
+		redirect_to "/photos/#{params[:photo_id]}"
+	end
+
+	def toast_user
+		if UserTag.find_by(photo_id: params[:photo_id], user_id: session[:user_id])
+			UserTag.find_by(photo_id: params[:photo_id], user_id: session[:user_id]).destroy
+		end
+		redirect_to "/photos/#{params[:photo_id]}"
+	end
+
+	def tag_user
+		if not UserTag.find_by(photo_id: params[:photo_id], user_id: session[:user_id])
+			ut = UserTag.new
+			ut.photo_id = params[:photo_id]
+			ut.user_id = session[:user_id]
+			ut.save
+		end
 		redirect_to "/photos/#{params[:photo_id]}"
 	end
 

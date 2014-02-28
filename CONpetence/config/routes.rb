@@ -24,6 +24,10 @@ CONpetence::Application.routes.draw do
 
   post '/conventions' => 'conventions#create'
   get "/logout" => "sessions#destroy", as: 'logout'
+  
+  delete '/photos/:photo_id/untagme' => 'photos#toast_user'
+  post '/photos/:photo_id/tagme' => 'photos#tag_user'
+
   resources :users, only: [:new, :create]
   resources :sessions
 

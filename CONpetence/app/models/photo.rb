@@ -8,4 +8,12 @@ class Photo < ActiveRecord::Base
 	has_many :characters, through: :char_tags
 	has_many :user_tags
 	has_many :users, through: :user_tags
+
+	def in_photo?(user_num)
+		if self.users.find_by(id: user_num)
+			return true
+		else
+			return false
+		end
+	end
 end
