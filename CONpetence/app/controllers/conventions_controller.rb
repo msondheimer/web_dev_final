@@ -1,6 +1,6 @@
 class ConventionsController < ApplicationController
 
-	before_action :require_login, :only => [:add_photo, :create, :new_con_form]
+	before_action :require_login, :only => [:create, :new_con_form]
  
 
 	def browse_cons
@@ -46,18 +46,24 @@ class ConventionsController < ApplicationController
 
 	def add_photo
 		@con_id = params[:con_id]
+		@photo = Photo.new
 		#@con = Convention.find_by(:id => params[:con_id])
-		render 'temp'
+		render 'new_photo'
 	end
 
 	def new_photo
 		#@con = Convention.find_by(:id => params[:con_id])
 		@the_con_id = params["con_id"]
-		p = Photo.new
-		p.photo_url = params["image_url"]
-		p.convention_id = @the_con_id
-		p.save
-		redirect_to "/conventions/#{@the_con_id}/photos"
+	  	@photo = Photo.create( user_params )
+	  	@photo.convention_id = @the_con_id
+	  	@photo.posting_user = session[:user_id]
+	  	@photo.save
+	  	redirect_to "/conventions/#{@the_con_id}/photos"
+	end
+
+	private
+	def user_params
+		params.require(:photo).permit(:picture)
 	end
 
 	def new_con_form
