@@ -10,13 +10,17 @@
 	<% @characters.each do |char| %>
 	<p> 
 		<%= char.name %> 
-		<%= form_tag "/photos/#{@photo.id}/delete/#{@photo.char_tags.find_by(character_id: char).id}", method: :delete do %>
+		<% if not @guest %>
+        <%= form_tag "/photos/#{@photo.id}/delete/#{@photo.char_tags.find_by(character_id: char).id}", method: :delete do %>
 			<%= submit_tag 'Delete this character', class: "btn btn-success" %>
+            <% end %>
 		<% end %>
 	</p>
 
 	<% end %>
+
 	<div>
+<% if not @guest %>
 <div class="row">
 	<div class="col-md-4">
     	<%= form_tag "/photos/#{@photo.id}/addchar", method: :post do%>
@@ -30,7 +34,7 @@
      </div>
       
     	<% end %>
-    </div></div>
+    </div><% end %></div>
 
 <div>
 <h2> Users in this photo include: </h2>
