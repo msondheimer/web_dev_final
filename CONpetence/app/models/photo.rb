@@ -1,6 +1,11 @@
 class Photo < ActiveRecord::Base
 
-	has_attached_file :picture
+	has_attached_file :picture, 
+		:storage => :s3,
+		:s3_credentials => Rails.root.join("config/s3.yml"),
+		:bucket => "CONpetence"
+    	#:dropbox_credentials => Rails.root.join("config/dropbox.yml")
+    	#, :dropbox_options => {...}
 	#validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
 
 	belongs_to :convention
