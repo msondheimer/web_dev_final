@@ -1,7 +1,7 @@
 <h1> <%="Here's a photo from #{@con.name} #{@con.start.year}" %> </h1>
 <div>
     	<div class="dan-big-chart">
-        	<%= link_to image_tag(@photo.photo_url), @photo.photo_url%>
+        	<%= link_to image_tag(@photo.picture.url), @photo.photo_url%>
     	</div>
 
 
@@ -53,4 +53,14 @@
     <% end %>
 
 
+</div>
+
+
+<div>
+
+<% if @photo.posting_user == session[:user_id] %>
+<%= form_tag "/photos/#{@photo.id}/delete" , method: :delete do %>
+<%= submit_tag 'Delete this photo', class: "btn btn-warning" %>
+<% end %>
+<% end %>
 </div>

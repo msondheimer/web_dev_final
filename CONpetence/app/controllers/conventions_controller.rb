@@ -1,7 +1,13 @@
 class ConventionsController < ApplicationController
 
-	before_action :require_login, :only => [:create, :new_con_form]
+	before_action :require_login, :only => [:create, :new_con_form, :add_photo, :new_photo]
  
+
+    def require_login
+      if session[:user_id].blank?
+        redirect_to root_url, notice: "Nice Try!"
+      end
+    end
 
 	def browse_cons
 		@genre_name = 'All'
@@ -9,17 +15,9 @@ class ConventionsController < ApplicationController
 		render 'conventions'
 	end
 
-	# def filter
-	# 	@cons = Convention.genre(params[:genre]).has_time.order("start asc")
-	# 	render 'conventions'
-	# end
-
-
 	def filter
-		#@cons = Convention.find_by(:genre => params[:genre])
 		@genre_name = params[:genre]
 		@cons = Convention.genre(@genre_name).has_time.order("start asc")
-
 		render 'conventions'
 	end
 

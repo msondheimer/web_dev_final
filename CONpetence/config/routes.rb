@@ -7,6 +7,7 @@ CONpetence::Application.routes.draw do
   post '/photos/:photo_id/addchar/' => 'photos#tag_char', :as => :addchar
 
   delete '/photos/:photo_id/delete/:chartag' => 'photos#toast_char'
+  delete '/photos/:photo_id/delete' => 'photos#toast_photo'
 
   post '/conventions/filter' => 'conventions#filter'
   post '/conventions/:con_id/photos/newphoto' => 'conventions#new_photo'

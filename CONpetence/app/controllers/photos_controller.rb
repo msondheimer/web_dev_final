@@ -38,6 +38,17 @@ class PhotosController < ApplicationController
 		redirect_to "/photos/#{params[:photo_id]}"
 	end
 
+	def toast_photo
+		p = Photo.find_by(id: params[:photo_id])
+		if session[:user_id] == p.posting_user
+			@con_id = p.convention_id
+			p.destroy
+			redirect_to "/conventions/#{@con_id}/photos"
+		else
+			redirect_to "/photos/#{p.id}", notice: "You can't do that!"
+		end
+	end
+
 	def toast_user
 		if UserTag.find_by(photo_id: params[:photo_id], user_id: session[:user_id])
 			UserTag.find_by(photo_id: params[:photo_id], user_id: session[:user_id]).destroy
