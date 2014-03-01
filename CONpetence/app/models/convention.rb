@@ -56,13 +56,11 @@ class Convention < ActiveRecord::Base
 
 	scope :has_time, -> {where.not(start: nil)}
 
-	scope :search_name, -> (name) {where.("LOWER(name) LIKE %?%", name.downcase)}
+	scope :search_name, -> (name) {where("LOWER(name) LIKE '%#{name.downcase}%'")}
 
 	scope :after, -> (date) {where("end >= ?", Date::strptime(date, "%Y-%m-%d")).order("start asc")}
 
-	scope :before, -> (date) {where("start <= ?", Date::strptime(date, "%Y-%m-%d").order("start asc")}
-
-	scope
+	scope :before, -> (date) {where("start <= ?", Date::strptime(date, "%Y-%m-%d")).order("start asc")}
 
 	def Convention.next(name) 
 		future.find_by(name: "#{name}")

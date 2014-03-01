@@ -5,10 +5,10 @@
 <div class="row">
   <div class="col-md-6">
 
-    <%= form_tag "/conventions", :method => 'get' do %>
+    <%= form_tag "/conventions/search/results", :method => 'get' do %>
 
       <div class="form-group">
-        <%= label_tag :name %>
+        <%= label_tag :name, "Name of the Convention" %>
         <%= text_field_tag :name, "", class: 'form-control', placeholder: 'Convention name' %>
       </div>
 
@@ -19,14 +19,23 @@
        
       <div class-"form-group">
         Within
-        <%= label_tag :dist %>
+        <%= label_tag :dist, "" %>
         <%= text_field_tag :dist, "", class: 'form-control'%>
         miles of 
-        <%= label_tag :loc %>
+        <%= label_tag :loc, "" %>
         <%= text_field_tag :loc, "", class: 'form-control', placeholder: 'location'%>
+      </div>
 
+      <div class="form-group">
+        Between the dates of 
+        <%= label_tag :after, "" %>
+        <%= text_field_tag :after, "", class: 'form-control', placeholder: 'enter the date as YYYY-MM-DD' %>
+        and 
+        <%= label_tag :before, "" %>
+        <%= text_field_tag :before, "", class: 'form-control', placeholder: 'enter the date as YYYY-MM-DD' %>
 
       </div>
+
       <%= submit_tag 'Search', class: 'btn btn-default' %>
     <% end %>
 
