@@ -1,6 +1,7 @@
 class ConventionsController < ApplicationController
 
 	before_action :require_login, :only => [:create, :new_con_form, :add_photo, :new_photo]
+
  
 
     def require_login
@@ -10,12 +11,48 @@ class ConventionsController < ApplicationController
     end
 
 	def browse_cons
+		@search = false
 		@genre_name = 'All'
 		@cons = Convention.all.has_time.order("start asc")
 		render 'conventions'
 	end
 
+
+	def search_results
+		@search = true
+		@message = "Showing #{params[:genre]} conventions"
+		if params[:name] != ""
+			@message +=  "whose names contain #{params[:name]}"
+		end
+		if params[:loc] == "" or params[:dist] == ""
+			params[:loc] = "Chicago, IL"
+			params[:dist] = 1000000
+		else
+			@message += " within #{params[:dist]} miles of #{params[:loc]}"
+		end
+		if params[:after] == ""
+			params[:after] = "1776-07-04"
+		else
+			@message += " starting after #{params[:after]}"
+		end
+		if params[:before] == ""
+			params[:before] = "9999-12-31"
+		else
+			@message += " ending by #{params[:before]}"
+		end
+		@cons = Convention.genre(params[:genre]).search_name(params[:name]).before(params[:before]).after(params[:after]).within(params[:loc], params[:dist].to_f)
+		render 'conventions'
+	end
+
+	# def filter
+	# 	@cons = Convention.genre(params[:genre]).has_time.order("start asc")
+	# 	render 'conventions'
+	# end
+
+
 	def filter
+		@search = false
+		#@cons = Convention.find_by(:genre => params[:genre])
 		@genre_name = params[:genre]
 		@cons = Convention.genre(@genre_name).has_time.order("start asc")
 		render 'conventions'
@@ -59,11 +96,6 @@ class ConventionsController < ApplicationController
 	  	redirect_to "/conventions/#{@the_con_id}/photos"
 	end
 
-	private
-	def user_params
-		params.require(:photo).permit(:picture)
-	end
-
 	def new_con_form
 		@con = Convention.new
 		render 'new_con'
@@ -83,4 +115,9 @@ class ConventionsController < ApplicationController
 		redirect_to '/conventions'
 	end
 
+
+	private
+	def user_params
+		params.require(:photo).permit(:picture)
+	end
 end

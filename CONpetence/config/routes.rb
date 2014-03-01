@@ -2,6 +2,8 @@ CONpetence::Application.routes.draw do
 
   root 'conventions#browse_cons'
 
+  get 'conventions/search/results' => 'conventions#search_results'
+
   get 'conventions/search' => 'conventions#search'
 
   post '/photos/:photo_id/addchar/' => 'photos#tag_char', :as => :addchar
