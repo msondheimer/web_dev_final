@@ -1,6 +1,6 @@
 class ConventionsController < ApplicationController
 
-	before_action :require_login, :only => [:create, :new_con_form]
+	#before_action :require_login, :only => [:create, :new_con_form]
  
 
 	def browse_cons
@@ -61,11 +61,6 @@ class ConventionsController < ApplicationController
 	  	redirect_to "/conventions/#{@the_con_id}/photos"
 	end
 
-	private
-	def user_params
-		params.require(:photo).permit(:picture)
-	end
-
 	def new_con_form
 		@con = Convention.new
 		render 'new_con'
@@ -85,4 +80,9 @@ class ConventionsController < ApplicationController
 		redirect_to '/conventions'
 	end
 
+
+	private
+	def user_params
+		params.require(:photo).permit(:picture)
+	end
 end
