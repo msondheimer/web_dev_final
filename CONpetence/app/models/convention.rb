@@ -56,7 +56,7 @@ class Convention < ActiveRecord::Base
 
 	scope :has_time, -> {where.not(start: nil)}
 
-	scope :search_name, -> (name) {where("LOWER(name) LIKE '%#{name.downcase}%'")}
+	scope :search_name, -> (substring) {where("LOWER(name) LIKE '%#{substring.downcase.gsub(/\W+/, '')}%'")}
 
 	scope :after, -> (date) {where("end >= ?", Date::strptime(date, "%Y-%m-%d")).order("start asc")}
 
