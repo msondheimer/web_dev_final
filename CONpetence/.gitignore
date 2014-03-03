@@ -16,4 +16,4 @@
 /tmp
 
 # Ignore the s3 key
-/config/s3.yml
+/config/s3_2.yml
