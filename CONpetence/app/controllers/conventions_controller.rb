@@ -22,7 +22,7 @@ class ConventionsController < ApplicationController
 		@search = true
 		@message = "Showing #{params[:genre]} conventions"
 		if params[:name] != ""
-			@message +=  "whose names contain #{params[:name]}"
+			@message +=  " whose names contain #{params[:name]}"
 		end
 		if params[:loc] == "" or params[:dist] == ""
 			params[:loc] = "Chicago, IL"
@@ -40,7 +40,7 @@ class ConventionsController < ApplicationController
 		else
 			@message += " ending by #{params[:before]}"
 		end
-		@cons = Convention.genre(params[:genre]).search_name(params[:name]).before(params[:before]).after(params[:after]).within(params[:loc], params[:dist].to_f)
+		@cons = Convention.genre(params[:genre]).before(params[:before]).after(params[:after]).search_name(params[:name]).within(params[:loc], params[:dist].to_f)
 		render 'conventions'
 	end
 

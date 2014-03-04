@@ -56,7 +56,22 @@ class Convention < ActiveRecord::Base
 
 	scope :has_time, -> {where.not(start: nil)}
 
-	scope :search_name, -> (substring) {where("LOWER(name) LIKE '%#{substring.downcase.gsub(/\W+/, '')}%'")}
+	def Convention.search_name(substring)
+		mod_string = substring.downcase.gsub(/\W+/, '')
+		names_array = []
+		all_list.each do |n_l|
+			if n_l.name.downcase.gsub(/\W+/, '').include?(mod_string)
+				names_array += [n_l.id]
+			end
+		end
+		#puts names_array
+		return search_array(names_array)
+	end
+
+
+
+	scope :all_list, -> {all}
+	scope :search_array, -> (arr) {where(id: arr)}
 
 	scope :after, -> (date) {where("end >= ?", Date::strptime(date, "%Y-%m-%d")).order("start asc")}
 
@@ -68,12 +83,12 @@ class Convention < ActiveRecord::Base
 
 	has_many :photos
 
-	# def distance(lat, lon)
-	# 	lat_dist = (self.lat - lat) * 24859.82 / 360 
-	# 	circ_at_lat = Math.cos(self.lat * Math::PI / 180) * 24901.55
-	# 	lon_dist = (self.lon - lon) * circ_at_lat / 360
-	# 	return Math.sqrt(lat_dist**2 + lon_dist**2) 
-	# end
+	def distance(lat, lon)
+		lat_dist = (self.lat - lat) * 24859.82 / 360 
+		circ_at_lat = Math.cos(self.lat * Math::PI / 180) * 24901.55
+		lon_dist = (self.lon - lon) * circ_at_lat / 360
+		return Math.sqrt(lat_dist**2 + lon_dist**2) 
+	end
 
 	def Convention.within(location, dist)
 		loc = location.chomp
@@ -90,12 +105,15 @@ class Convention < ActiveRecord::Base
 		rescue NoMethodError
 			return Convention.where(id: -1)
 		end
-		lat_deg = 24859.82 / 360
-		lon_deg = Math.cos(coord_lat * Math::PI / 180) * 24901.55 / 360
-		dist_sq = dist * dist
-		where("(((#{coord_lat} - lat) * #{lat_deg}) * ((#{coord_lat} - lat) * #{lat_deg})) 
-			+ (((#{coord_lon} - lon) * #{lon_deg}) * ((#{coord_lon} - lon) * #{lon_deg})) 
-			<= #{dist_sq}")
+		dist_array = []
+		all_list.each do |d_l|
+			if d_l.distance(coord_lat, coord_lon) <= dist
+				dist_array += [d_l.id]
+			end
+		end
+		#puts names_array
+		return search_array(dist_array)
+
 	end
 	
 end
