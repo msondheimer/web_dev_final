@@ -1,7 +1,13 @@
 class User < ActiveRecord::Base
+	#attr_accessible :email, :name, :password, :password_confirmation
+	validates :name, presence: true#, message: "You need to enter the name."
+	validates :email, uniqueness: true
+	validates :password, presence: true
+	#validates :has_secure_password, presence: true
+	has_secure_password
+
 	before_destroy :nilif_posted_photos
 
-	has_secure_password
 	has_many :user_tags, dependent: :destroy
 	has_many :photos, through: :user_tags
 	has_many :posted_photos, foreign_key: :posting_user, class_name: "Photo"
