@@ -1,4 +1,7 @@
-<h1> <%="Here's a photo from #{@con.name} #{@con.start.year}" %> </h1>
+<h1> <%="Here's a photo from #{@con.name} #{@con.find_year}" %> </h1>
+<% if @photo.posting_user %>
+    <h2> <%= "Thanks to #{@posting_user.name} for sharing it with us"%> </h2>
+    <% end %>
 <div>
     	<div class="dan-big-chart">
         	<%= link_to image_tag(@photo.picture.url), @photo.picture.url%>
@@ -63,7 +66,7 @@
 
 <div>
 
-<% if @photo.posting_user == session[:user_id] %>
+<% if @photo.posting_user == session[:user_id]  and session[:user_id]%>
 <%= form_tag "/photos/#{@photo.id}/delete" , method: :delete do %>
 <%= submit_tag 'Delete this photo', class: "btn btn-warning" %>
 <% end %>

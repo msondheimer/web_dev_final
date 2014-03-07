@@ -2,21 +2,85 @@ require 'open-uri'
 require 'json'
 
 class Convention < ActiveRecord::Base
+
+	validates :name, presence: true#, message: "You need to enter the name."}
+	validates :genre, presence: true
+	validates :lat, presence: true
+	validates :lon, presence: true
+	validate :start_before_end, :reasonable_time_span
+	validate :not_a_repeat
+
+	def start_before_end
+		r = false
+		begin
+			r = self.start <= self.end
+		rescue NoMethodError
+			r = false
+		end
+		if not r
+			errors.add(:end, "Must be after start")
+		end
+	end
+
+	def reasonable_time_span
+		r = false
+		begin 
+			r = self.end.to_date.mjd - self.start.to_date.mjd < 7
+		rescue NoMethodError
+			r = false
+		end
+		if not r
+			errors.add(:end, "Con can't be over a week long")
+		end
+	end
+
+	def not_a_repeat
+		r = false
+		if self.id
+			r = true
+		else
+			start = self.start - 2.days
+			fin = self.end + 2.days
+			date_hash = {}
+			[start, fin].each do |d|
+				date_hash[d] = "#{d.year}-#{d.month}-#{d.day}"
+			end
+			r = Convention.before(date_hash[fin]).after(date_hash[start]).search_name(self.name).within(self.address, 20).count == 0
+		end
+		if not r
+			errors.add(:name, "This con seems like a repeat")
+		end
+	end
+
+
+
+
 	#Go to google to find coords
 	#after_save
 
-	before_save :find_coords
+	before_validation :find_coords
+
+	has_many :photos, dependent: :destroy
+
+	def address
+		address = ""
+		if self.city
+			address = self.city.chomp
+		else
+			return ""
+		end
+		if self.venue
+			address += "+#{self.venue.chomp}"
+		end
+		return address.tr(" ", "+")
+	end
 
 	def find_coords
 		if self.city == nil
 			self.lat = nil
 			self.lon = nil
 		else
-			address = self.city.chomp
-			if self.venue != nil
-				address += "+#{self.venue.chomp}"
-			end
-			address = address.tr(" ", "+")
+			address = self.address #address.tr(" ", "+")
 			json_data = open("http://maps.googleapis.com/maps/api/geocode/json?address=#{address}&sensor=true").read()
 			data = JSON.parse(json_data)
 			begin
@@ -58,19 +122,10 @@ class Convention < ActiveRecord::Base
 
 	def Convention.search_name(substring)
 		mod_string = substring.downcase.gsub(/\W+/, '')
-		names_array = []
-		all_list.each do |n_l|
-			if n_l.name.downcase.gsub(/\W+/, '').include?(mod_string)
-				names_array += [n_l.id]
-			end
-		end
-		#puts names_array
-		return search_array(names_array)
+		z = pluck(:id, :name).map {|i,n| n.downcase.gsub(/\W+/, '').include?(mod_string) ? i : -1}
+		where(id: z)
 	end
 
-
-
-	scope :all_list, -> {all}
 	scope :search_array, -> (arr) {where(id: arr)}
 
 	scope :after, -> (date) {where("end >= ?", Date::strptime(date, "%Y-%m-%d")).order("start asc")}
@@ -78,7 +133,7 @@ class Convention < ActiveRecord::Base
 	scope :before, -> (date) {where("start <= ?", Date::strptime(date, "%Y-%m-%d")).order("start asc")}
 
 	def Convention.next(name) 
-		future.find_by(name: "#{name}")
+		future.find_by(name: name)
 	end
 
 	has_many :photos
@@ -106,7 +161,7 @@ class Convention < ActiveRecord::Base
 			return Convention.where(id: -1)
 		end
 		dist_array = []
-		all_list.each do |d_l|
+		all.each do |d_l|
 			if d_l.distance(coord_lat, coord_lon) <= dist
 				dist_array += [d_l.id]
 			end
@@ -114,6 +169,14 @@ class Convention < ActiveRecord::Base
 		#puts names_array
 		return search_array(dist_array)
 
+	end
+
+	def find_year
+		if self.start.year != self.end.year
+			return "#{self.start.year}-#{self.end.year}"
+		else
+			return "#{self.start.year}"
+		end
 	end
 	
 end

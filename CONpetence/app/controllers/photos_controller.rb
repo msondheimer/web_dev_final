@@ -17,6 +17,7 @@ class PhotosController < ApplicationController
 			@characters = @photo.characters
 			@users = @photo.users
 			@guest = true
+			@posting_user = User.find_by(id: @photo.posting_user)
 			if session[:user_id]
 				@guest = false
 				if @photo.in_photo?(session[:user_id])

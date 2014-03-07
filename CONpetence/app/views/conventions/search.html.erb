@@ -20,7 +20,7 @@
       <div class-"form-group">
         Within
         <%= label_tag :dist, "" %>
-        <%= text_field_tag :dist, "", class: 'form-control'%>
+        <%= number_field_tag :dist, "", :in => 0..1000, class: 'form-control'%>
         miles of 
         <%= label_tag :loc, "" %>
         <%= text_field_tag :loc, "", class: 'form-control', placeholder: 'location'%>
@@ -29,10 +29,10 @@
       <div class="form-group">
         Between the dates of 
         <%= label_tag :after, "" %>
-        <%= text_field_tag :after, "", class: 'form-control', placeholder: 'enter the date as YYYY-MM-DD' %>
+        <%= select_date Date.today, prefix: :after, class: 'form-control' %>
         and 
         <%= label_tag :before, "" %>
-        <%= text_field_tag :before, "", class: 'form-control', placeholder: 'enter the date as YYYY-MM-DD' %>
+        <%= select_date Date.today + 1.year, prefix: :before, class: 'form-control' %>
 
       </div>
 

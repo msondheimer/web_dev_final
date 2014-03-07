@@ -1,4 +1,4 @@
 class Appearance < ActiveRecord::Base
-	belongs_to :character
-	belongs_to :franchise
+	belongs_to :character, dependent: :destroy
+	belongs_to :franchise, dependent: :destroy
 end

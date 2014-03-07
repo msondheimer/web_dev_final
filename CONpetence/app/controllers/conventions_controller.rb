@@ -2,7 +2,7 @@ class ConventionsController < ApplicationController
 
 	before_action :require_login, :only => [:create, :new_con_form, :add_photo, :new_photo]
 
- 
+	@search = false 
 
     def require_login
       if session[:user_id].blank?
@@ -11,7 +11,7 @@ class ConventionsController < ApplicationController
     end
 
 	def browse_cons
-		@search = false
+		#@search = false
 		@genre_name = 'All'
 		@cons = Convention.all.has_time.order("start asc")
 		render 'conventions'
@@ -30,17 +30,11 @@ class ConventionsController < ApplicationController
 		else
 			@message += " within #{params[:dist]} miles of #{params[:loc]}"
 		end
-		if params[:after] == ""
-			params[:after] = "1776-07-04"
-		else
-			@message += " starting after #{params[:after]}"
-		end
-		if params[:before] == ""
-			params[:before] = "9999-12-31"
-		else
-			@message += " ending by #{params[:before]}"
-		end
-		@cons = Convention.genre(params[:genre]).before(params[:before]).after(params[:after]).search_name(params[:name]).within(params[:loc], params[:dist].to_f)
+		@message += " between #{params[:after][:month]}/#{params[:after][:day]}/#{params[:after][:year]} 
+				and #{params[:before][:month]}/#{params[:before][:day]}/#{params[:before][:year]}"
+		@cons = Convention.genre(params[:genre]).before("#{params[:before][:year]}-#{params[:before][:month]}-#{params[:before][:day]}")
+				.after("#{params[:after][:year]}-#{params[:after][:month]}-#{params[:after][:day]}")
+				.search_name(params[:name]).within(params[:loc], params[:dist].to_f)
 		render 'conventions'
 	end
 
@@ -51,7 +45,7 @@ class ConventionsController < ApplicationController
 
 
 	def filter
-		@search = false
+		#@search = false
 		#@cons = Convention.find_by(:genre => params[:genre])
 		@genre_name = params[:genre]
 		@cons = Convention.genre(@genre_name).has_time.order("start asc")
@@ -109,8 +103,9 @@ class ConventionsController < ApplicationController
 		c.venue = params['convention']['venue']
 		c.expected_size = params['convention']['expected_size']
 		c.con_url = params["convention"]["con_url"]
-		c.start = params['convention']['start']
-		c.end = params['convention']['end']
+		c.start = "#{params['convention']['start(1i)']}-#{params['convention']['start(2i)']}-#{params['convention']['start(3i)']}"
+		c.end = "#{params['convention']['end(1i)']}-#{params['convention']['end(2i)']}-#{params['convention']['end(3i)']}"
+		c.description = params['convention']['description']
 		c.save
 		redirect_to '/conventions'
 	end
