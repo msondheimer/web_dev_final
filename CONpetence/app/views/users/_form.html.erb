@@ -1,5 +1,4 @@
-<h1>Sign Up!</h1>
-
+<div class='col-lg-6'>
   <% if @user.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@user.errors.count, "error") %> prohibited this convention from being saved:</h2>
@@ -24,16 +23,19 @@
       </div>
       <div class="form-group">
         <!-- DISPLAY A DESCRIPTION LABEL -->
+        <%= f.label "E-mail"%> <br/>
          <%=f.text_field :email, :placeholder => " email" %>
         <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
       </div>
       <div class="form-group">
         <!-- DISPLAY A DESCRIPTION LABEL -->
+        <%= f.label "Password"%> <br/>
         <%=f.text_field :password, :placeholder => "City, State" %><br/>
         <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
       </div>
       <div class="form-group">
-        <%=f.test_field :password_confirmation, :placeholder => "password_confirmation"%> <br/>
+        <%= f.label "Password Confirmation"%> <br/>
+        <%=f.text_field :password_confirmation, :placeholder => "password confirmation"%> <br/>
       </div>
       <div class="actions">
       <%=f.submit "Submit" %>
@@ -41,3 +43,4 @@
       </div>
 
 <% end %>
+</div>  

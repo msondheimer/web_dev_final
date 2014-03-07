@@ -21,7 +21,7 @@ CONpetence::Application.routes.draw do
   get '/conventions/filter/:genre' => 'conventions#filter'
 
 
-
+  get '/users/new' => 'users#new_user_form'
   get '/conventions/new' => 'conventions#new_con_form'
 
   get '/conventions/:con_id/photos' => 'conventions#browse_photos'

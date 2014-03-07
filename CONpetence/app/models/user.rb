@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	#attr_accessible :email, :name, :password, :password_confirmation
+	attr_accessible :email, :name, :password, :password_confirmation, :password_digest
 	validates :name, presence: true#, message: "You need to enter the name."
 	validates :email, uniqueness: true
 	validates :password, presence: true
