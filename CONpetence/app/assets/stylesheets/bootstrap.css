@@ -15,6 +15,7 @@
   border: solid #444 1px; 
   height: 270px;
   width: 320px;
+  background-color: #222;
 }
 /*.chart:hover {
   background: #fbf6ba;
