@@ -1,5 +1,7 @@
 <h1>Sign In Here</h1>
-
+<% if flash[:notice] %>
+    <div id="notice"><%= flash[:notice] %></div>
+<% end %>
 <%= form_tag "/sessions" do %>
   <%= label_tag :email %>
   <%= text_field_tag :email, "", placeholder: "Enter your email address" %>
