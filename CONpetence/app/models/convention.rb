@@ -36,17 +36,17 @@ class Convention < ActiveRecord::Base
 
 	def not_a_repeat
 		r = false
+		there = 0
 		if self.id
-			r = true
-		else
-			start = self.start - 2.days
-			fin = self.end + 2.days
-			date_hash = {}
-			[start, fin].each do |d|
-				date_hash[d] = "#{d.year}-#{d.month}-#{d.day}"
-			end
-			r = Convention.before(date_hash[fin]).after(date_hash[start]).search_name(self.name).within(self.address, 20).count == 0
+			there = 1
 		end
+		start = self.start - 2.days
+		fin = self.end + 2.days
+		date_hash = {}
+		[start, fin].each do |d|
+			date_hash[d] = "#{d.year}-#{d.month}-#{d.day}"
+		end
+		r = Convention.before(date_hash[fin]).after(date_hash[start]).search_name(self.name).within(self.address, 20).count == there
 		if not r
 			errors.add(:name, "This con seems like a repeat")
 		end
