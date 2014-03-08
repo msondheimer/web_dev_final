@@ -2,8 +2,16 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    if session[:user_id] != @user.id
+    if not session[:user_id]
       redirect_to root_url, notice: "No way!"
+    elsif session[:user_id] == params[:id]
+      @editing = true
+    elsif not @user
+      redirect_to root_url  
+    else
+      @posted_photos = @user.posted_photos
+      @photos_in = @user.photos
+      render 'profile'
     end
   end
 

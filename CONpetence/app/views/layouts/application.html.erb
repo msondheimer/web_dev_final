@@ -38,7 +38,7 @@
       <ul class="nav navbar-nav">
         <li><%= link_to "Search Cons", "/conventions/search" %></li>
         <% if session[:user_id] %>
-          <li>Logged in as <%= User.find(session[:user_id]).name %></li>
+          <li>Logged in as <%= link_to User.find(session[:user_id]).name, "/users/#{session[:user_id]}" %></li>
         <% end %>
           <li><%= link_to "View all Conventions", "/conventions" %></li>
         <% if session[:user_id].blank? %>
