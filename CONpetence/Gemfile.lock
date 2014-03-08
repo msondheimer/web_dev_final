@@ -31,7 +31,7 @@ GEM
       builder
       mime-types
       xml-simple
-    aws-sdk (1.5.8)
+    aws-sdk (1.6.9)
       httparty (~> 0.7)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
@@ -139,7 +139,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-s3
-  aws-sdk (~> 1.5.7)
+  aws-sdk (~> 1.6.9)
   bcrypt-ruby (~> 3.1.2)
   coffee-rails (~> 4.0.0)
   jbuilder (~> 1.2)

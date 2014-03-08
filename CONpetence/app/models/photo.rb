@@ -1,6 +1,6 @@
 class Photo < ActiveRecord::Base
 
-	# before_destroy :del_from_s3
+	before_destroy :del_from_s3
 
 	has_attached_file :picture, 
 		:storage => :s3,
@@ -25,9 +25,19 @@ class Photo < ActiveRecord::Base
 		end
 	end
 
-	# def del_from_s3
-	# 	path = self.picture.url.sub("http://s3.amazonaws.com/CONpetence/","")
-	# 	s3 = AWS::S3.new(:s3_credentials => Rails.root.join("config/s3_2.yml"))
-	# 	s3.bucket[path]
-	# end
+	def del_from_s3
+		path = self.picture.url.sub("http://s3.amazonaws.com/CONpetence/","")
+		creds =  YAML.load_file(Rails.root.join("config/s3_2.yml"))
+		s3 = AWS::S3.new(:access_key_id => creds["access_key_id"], 
+				:secret_access_key => creds['secret_access_key'])
+		puts s3
+		term = path.rindex("?")
+		path = path[0..(term-1)]
+		puts path
+		obj = s3.buckets['CONpetence'].objects[path]
+		puts obj
+		obj.delete
+		s3 = nil
+		return 0
+	end
 end
