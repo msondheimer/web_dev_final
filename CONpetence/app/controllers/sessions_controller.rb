@@ -19,9 +19,8 @@ class SessionsController < ApplicationController
         render "new"
       end
     else
-       flash  [:notice]="Unknown Email Address"
+       flash[:notice]="Unknown Email Address"
        render "new"
     end
   end
-
 end
