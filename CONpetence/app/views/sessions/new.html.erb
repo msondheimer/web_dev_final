@@ -1,3 +1,4 @@
+<div class="mel-padding ">
 <h1>Sign In Here</h1>
 <% if flash[:notice] %>
     <div id="notice"><%= flash[:notice] %></div>
@@ -16,5 +17,9 @@
   
   <%= submit_tag "Login", class: 'btn-success' %>
 <% end %>
+
+</br>
+<%= link_to 'Back to the home page', root_url %>
+</div>
 
 
