@@ -31,12 +31,12 @@
       <div class="form-group">
         <!-- DISPLAY A DESCRIPTION LABEL -->
         <%= f.label "Password"%> <br/>
-        <%=f.text_field :password, :placeholder => "password" %><br/>
+        <%=f.password_field :password, :placeholder => "Password" %><br/>
         <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
       </div>
       <div class="form-group">
         <%= f.label "Password Confirmation"%> <br/>
-        <%=f.text_field :password_confirmation, :placeholder => "password confirmation"%> 
+        <%=f.password_field :password_confirmation, :placeholder => "Password confirmation"%> 
       </div>
       <div class="actions">
       <%=f.submit "Submit" , class: 'btn-success'%>
