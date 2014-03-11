@@ -45,10 +45,13 @@
             <li><%= link_to "Add New Con", "/conventions/new"  %></li>
             <li><%= link_to "Sign Out", logout_url %></li>
         <% end %>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
         <% if session[:user_id] %>
           <li>Logged in as <%= User.find(session[:user_id]).name %></li>
         <% end %>
       </ul>
+      
     </div><!-- /.navbar-collapse -->
   </nav>
 
