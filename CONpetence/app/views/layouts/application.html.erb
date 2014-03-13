@@ -37,12 +37,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><%= link_to "Search Cons", "/conventions/search" %></li>
-<<<<<<< HEAD
         <% if session[:user_id] %>
           <li>Logged in as <%= link_to User.find(session[:user_id]).name, "/users/#{session[:user_id]}" %></li>
         <% end %>
-=======
->>>>>>> origin/user/search-validation
           <li><%= link_to "View all Conventions", "/conventions" %></li>
           <li><%= link_to "View Characters", "/characters" %></li>
         <% if session[:user_id].blank? %>

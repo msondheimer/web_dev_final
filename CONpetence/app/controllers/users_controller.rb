@@ -4,11 +4,7 @@ class UsersController < ApplicationController
     flash[:notice] = nil
     @user = User.find(params[:id])
     if not session[:user_id]
-<<<<<<< HEAD
       redirect_to root_url, notice: "No way!"
-=======
-      redirect_to root_url#, notice: "No way!"
->>>>>>> origin/user/search-validation
     elsif session[:user_id] == params[:id]
       @editing = true
     elsif not @user
