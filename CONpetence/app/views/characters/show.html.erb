@@ -3,7 +3,9 @@
 <div>  
 	<p> 
 		How to cosplay
+		<% if session[:user_id] %>
 		<%= link_to "edit", "/characters/#{@char.id}/edit", class: "btn btn-success" %>
+		<% end %>
 	</p>
 	<%= @char.cosplaying %>
 </div>
