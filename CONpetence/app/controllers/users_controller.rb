@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
 
   def show
+    flash[:notice] = nil
     @user = User.find(params[:id])
     if not session[:user_id]
-      redirect_to root_url, notice: "No way!"
+      redirect_to root_url#, notice: "No way!"
     elsif session[:user_id] == params[:id]
       @editing = true
     elsif not @user
@@ -15,10 +16,45 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+    render 'edit'
+  end
+
   def new_user_form
     @user = User.new
     render 'new_user'
   end
+
+  # def update
+  #   flash[:notice] = nil
+  #   @user = User.find(params[:id])
+  #   @user.name = params[:name]
+  #   if @user.save
+  #     redirect_to "/users/#{@user.id}"
+  #   else
+  #     @user = User.find(params[:id])
+  #     flash[:notice]="#{@name} has been taken, try again"
+  #     render 'edit'
+  #   end 
+  # end
+  
+
+  def update
+    @user = User.find(params[:id])
+    @user.name = params[:name]
+    @user.email = params[:email]
+    @user.password = params[:password]
+    @user.password_confirmation = params[:password_confirmation]
+    if @user.save
+      redirect_to "/users/#{@user.id}"
+    else
+      #@user = User.find(params[:id])
+      #flash[:notice]="#{@name} has been taken, try again"
+      render 'edit'
+    end 
+  end
+  
 
 
   def create
@@ -29,7 +65,7 @@ class UsersController < ApplicationController
     @user.password_confirmation = params["user"]["password_confirmation"]
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_url, notice: "Thanks for signing up!"
+      redirect_to root_url#, notice: "Thanks for signing up!"
     else
       render 'new_user'
     end

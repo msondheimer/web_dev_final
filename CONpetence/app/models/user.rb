@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
 	attr_accessible :email, :name, :password, :password_confirmation, :password_digest
-	validates :name, presence: true#, message: "You need to enter the name."
+	validates :name, presence: true
+	validates :name, uniqueness: true#, message: "You need to enter the name."
 	validates :email, presence: true
 	validates :email, uniqueness: true
-	validates :password, presence: true
+	validates :password, presence: true, on: :create 
 	#validates :has_secure_password, presence: true
 	has_secure_password
 
@@ -20,4 +21,15 @@ class User < ActiveRecord::Base
 			ph.save
 		end
 	end
+
+	def find_name(id)
+		u = User.find(id)
+		return u.name
+		#u = self.name
+		#return u
+	end
+		
+		
+
+
 end

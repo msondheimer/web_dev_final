@@ -33,6 +33,9 @@ CONpetence::Application.routes.draw do
   delete '/photos/:photo_id/untagme' => 'photos#toast_user'
   post '/photos/:photo_id/tagme' => 'photos#tag_user'
 
+  get '/users/edit/:id' => 'users#edit'
+  patch '/users/update/:id' => 'users#update'
+
   resources :users, only: [:new, :create, :show]
   resources :sessions
 

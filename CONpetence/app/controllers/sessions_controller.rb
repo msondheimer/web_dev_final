@@ -2,11 +2,12 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to root_url, notice: "Goodbye."
+    redirect_to root_url#, notice: "Goodbye."
   end
 
 
   def create
+    #flash[:notice] = nil
     email_address = params[:email]
     @user = User.find_by(email: email_address)
     
