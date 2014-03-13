@@ -33,7 +33,7 @@ CONpetence::Application.routes.draw do
   delete '/photos/:photo_id/untagme' => 'photos#toast_user'
   post '/photos/:photo_id/tagme' => 'photos#tag_user'
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :show]
   resources :sessions
 
 
