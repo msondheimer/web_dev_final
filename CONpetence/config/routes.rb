@@ -35,6 +35,8 @@ CONpetence::Application.routes.draw do
 
   resources :users, only: [:new, :create, :show]
   resources :sessions
+  resources :characters, except: [:delete]
+
 
 
   

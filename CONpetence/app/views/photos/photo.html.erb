@@ -12,7 +12,7 @@
 <h2> Characters in this photo include: </h2>
 	<% @characters.each do |char| %>
 	<p> 
-		<%= char.name %> 
+		<%= link_to char.name, "/characters/#{char.id}" %> 
 		<% if not @guest %>
         <%= form_tag "/photos/#{@photo.id}/delete/#{@photo.char_tags.find_by(character_id: char).id}", method: :delete do %>
 			<%= submit_tag 'Delete this character', class: "btn btn-success" %>
