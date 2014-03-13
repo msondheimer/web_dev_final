@@ -2,18 +2,18 @@
   <h1>Search Conventions</h1>
 </div>
 
-<div class="row">
+
   <div class="col-md-6">
 
     <%= form_tag "/conventions/search/results", :method => 'get' do %>
 
       <div class="form-group">
-        <%= label_tag :name, "Name of the Convention" %>
+        <%= label_tag :name, "Name of the Convention" %></br>
         <%= text_field_tag :name, "", class: 'form-control', placeholder: 'Convention name' %>
       </div>
 
       <div class="form-group">
-        <%= label_tag :genre, "Type" %>
+        <%= label_tag :genre, "Type" %></br>
         <%= select_tag :genre,  options_for_select([["All", "All"]] + Convention.genre_opts, @genre_name), class: 'form-control' %>
       </div>
        
@@ -39,5 +39,4 @@
       <%= submit_tag 'Search', class: 'btn btn-default' %>
     <% end %>
 
-  </div>
 </div>

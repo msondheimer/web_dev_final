@@ -36,7 +36,7 @@ CONpetence::Application.routes.draw do
   get '/users/edit/:id' => 'users#edit'
   patch '/users/update/:id' => 'users#update'
 
-  resources :users, only: [:new, :create, :show]
+  resources :users#, only: [:new, :create, :show]
   resources :sessions
 
 

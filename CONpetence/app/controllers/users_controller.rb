@@ -26,19 +26,12 @@ class UsersController < ApplicationController
     render 'new_user'
   end
 
-  # def update
-  #   flash[:notice] = nil
-  #   @user = User.find(params[:id])
-  #   @user.name = params[:name]
-  #   if @user.save
-  #     redirect_to "/users/#{@user.id}"
-  #   else
-  #     @user = User.find(params[:id])
-  #     flash[:notice]="#{@name} has been taken, try again"
-  #     render 'edit'
-  #   end 
-  # end
-  
+ def destroy
+    session[:user_id] = nil
+    u = User.find_by(params[:id])
+    u.destroy
+    redirect_to root_url
+  end
 
   def update
     @user = User.find(params[:id])

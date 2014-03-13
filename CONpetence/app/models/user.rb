@@ -25,8 +25,11 @@ class User < ActiveRecord::Base
 	def find_name(id)
 		u = User.find(id)
 		return u.name
-		#u = self.name
-		#return u
+	end
+
+	def find_name(id)
+		u = User.find(id)
+		return u.name
 	end
 		
 		

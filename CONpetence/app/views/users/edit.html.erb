@@ -14,7 +14,6 @@
 <% end %>
 
 
-
 <%= form_tag "/users/update/#{@user.id}", :method => 'patch' do %>
 
       <div class="form-group">
@@ -39,13 +38,15 @@
     <%= password_field_tag :password_confirmation, @user.password_confirmation %>
     </div>
 
-
-
       <div class="actions">
       <%= submit_tag"Submit" , class: 'btn-success'%>
 
       <!-- DISPLAY A SUBMIT BUTTON WITH A CLASS OF 'btn btn-primary' -->
       </div>
+</br>
+<div>
+<%= link_to 'Delete your profile', user_path(@user.id), method: 'delete', class: 'pull-right btn btn-large btn-danger' %>
+</div>
 
 </br>
 <%= link_to 'Back to your profile', "/users/#{@user.id}" %>
