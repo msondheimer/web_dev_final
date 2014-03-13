@@ -37,9 +37,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><%= link_to "Search Cons", "/conventions/search" %></li>
-        <% if session[:user_id] %>
-          <li>Logged in as <%= link_to User.find(session[:user_id]).name, "/users/#{session[:user_id]}" %></li>
-        <% end %>
+
           <li><%= link_to "View all Conventions", "/conventions" %></li>
           <li><%= link_to "View Characters", "/characters" %></li>
         <% if session[:user_id].blank? %>
@@ -49,10 +47,10 @@
             <li><%= link_to "Add New Con", "/conventions/new"  %></li>
             <li><%= link_to "Sign Out", logout_url %></li>
         <% end %>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
+       
         <% if session[:user_id] %>
-          <li>Logged in as <%= link_to User.find(session[:user_id]).name, "/users/#{session[:user_id]}" %></li>
+
+          <li><%= link_to  "Logged in as #{User.find(session[:user_id]).name}", "/users/#{session[:user_id]}" %> </li>
         <% end %>
       </ul>
       
