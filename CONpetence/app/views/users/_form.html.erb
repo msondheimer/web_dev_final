@@ -1,0 +1,48 @@
+<div class='col-lg-6'>
+  <% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+ 
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+
+<%= form_for @user do |f| %>
+
+      <div class="form-group">
+        <!-- DISPLAY A TITLE LABEL -->
+        <%= f.label "Name"%> <br/>
+        <%=f.text_field :name, :placeholder => " Username" %><br/>
+        <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
+      </div>
+      <div class="form-group">
+        <!-- DISPLAY A DESCRIPTION LABEL -->
+        <%= f.label "E-mail"%> <br/>
+         <%=f.text_field :email, :placeholder => " email" %>
+        <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
+      </div>
+      <div class="form-group">
+        <!-- DISPLAY A DESCRIPTION LABEL -->
+        <%= f.label "Password"%> <br/>
+        <%=f.password_field :password, :placeholder => "Password" %><br/>
+        <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
+      </div>
+      <div class="form-group">
+        <%= f.label "Password Confirmation"%> <br/>
+        <%=f.password_field :password_confirmation, :placeholder => "Password"%> 
+      </div>
+      <div class="actions">
+      <%=f.submit "Submit" , class: 'btn-success'%>
+
+      <!-- DISPLAY A SUBMIT BUTTON WITH A CLASS OF 'btn btn-primary' -->
+      </div>
+
+<% end %>
+</div>  
+
