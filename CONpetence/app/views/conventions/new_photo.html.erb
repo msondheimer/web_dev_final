@@ -1,17 +1,10 @@
 <div class="page-header">
-  <h1>Add a New Photo</h1>
+  <h2>Add a New Photo</h2>
 </div>
-
-<div class="row">
-  <div class="col-md-6">
 
 
 <%= form_for @photo, url: url_for(:controller => 'conventions', :action => 'new_photo'), :html => { :multipart => true } do |form| %>
   <%= form.file_field :picture %>
-  <%= form.submit "Submit" %>
+  <br>
+  <%= form.submit "Submit", class: "btn btn-success"  %>
 <% end %>
-
-
-
-  </div>
-</div>
