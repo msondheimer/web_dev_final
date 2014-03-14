@@ -1,3 +1,4 @@
+<div class="mel-padding ">
 <p>
 	<% if @search %>
 	
@@ -15,7 +16,7 @@
 
 </p>
 
-<div class="mel-padding ">
+
 <% @cons.each do |con| %>
 	<div>
 		<h2> <%= link_to "#{con.name} #{con.find_year}", "/conventions/#{con.id}" %> </h2>
