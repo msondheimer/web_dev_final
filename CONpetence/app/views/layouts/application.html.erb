@@ -63,7 +63,7 @@
 
           <% else %>
           <li><%= link_to  "Logged in as #{User.find(session[:user_id]).name}", "/users/#{session[:user_id]}" %> </li>
-          <li><%= link_to "Sign Out", logout_url %></li>
+          <li><%= link_to "Sign Out", "/users/#{session[:user_id]}", method: 'delete' %></li>
         <% end %>
       </ul>
       

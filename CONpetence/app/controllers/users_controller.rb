@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     render 'edit'
   end
 
-  def new_user_form
+  def new
     @user = User.new
     render 'new_user'
   end
@@ -50,8 +50,6 @@ class UsersController < ApplicationController
     end 
   end
   
-
-
   def create
     @user = User.new
     @user.name = params["user"]["name"]
