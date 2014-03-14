@@ -47,16 +47,15 @@ end
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
 
-<<<<<<< HEAD
-gem 'protected_attributes'
-
-=======
 
 gem 'protected_attributes'
+
+gem 'rails_12factor', group: :production
+
 
 #gem 'protected_attributes'
 
->>>>>>> FETCH_HEAD
+
 
 # Use unicorn as the app server
 # gem 'unicorn'

@@ -2,6 +2,8 @@ CONpetence::Application.routes.draw do
 
   root 'conventions#browse_cons'
 
+  delete '/signout' => 'sessions#destroy'
+
   get '/conventions/:con_id/photos' => 'conventions#browse_photos'
   get 'conventions/search/results' => 'conventions#search_results'
   get 'conventions/search' => 'conventions#search'
