@@ -3,12 +3,12 @@
 
 <h1> <%="Here's a photo from #{@con.name} #{@con.find_year}" %> </h1>
 <% if @photo.posting_user %>
-    <h2> <%= "Thanks to #{@posting_user.name} for sharing it with us"%> </h2>
+    <h2> <%= "Thanks to " %> <%= link_to @posting_user.name, "/users/#{@posting_user.id}"%> <%=" for sharing it with us"%> </h2>
     <% end %>
 <div>
-    	<div class="dan-big-chart">
-        	<%= link_to image_tag(@photo.picture.url), @photo.picture.url%>
-    	</div>
+        <div class="dan-big-chart">
+            <%= link_to image_tag(@photo.picture.url), @photo.picture.url%>
+        </div>
 
 
 
@@ -55,11 +55,13 @@
 
     <% @users.each do |user| %>
 
+
         <div class="row">
             <div class="col-md-1">
-        <%= user.name %> 
+
+        <%= link_to user.name, "/users/#{user.id}" %> 
     </div>
-  
+
 
     <% end %>
     <% if not @guest %>
