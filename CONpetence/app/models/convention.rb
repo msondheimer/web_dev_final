@@ -101,9 +101,14 @@ class Convention < ActiveRecord::Base
 	scope :future, -> {where("end >= ?", Time.now).order("start asc")}
 
 	#scope :past, -> {where("start <= ?", Time.now).order("start desc")}
-	scope :past, -> {where("start <= ?", Time.now).order("start asc")}
+	scope :past, -> {where("start <= ?", Time.now).order("start desc")}
 
 	scope :present, ->{future.past} 
+
+	def Convention.home
+		early = Convention.past.limit(3).first.start
+		Convention.all.where("start >= ?", early).order("start asc").limit(13)
+	end
 
 	#scope :from, ->(duration){ where('start > ?', Time.zone.today - duration ).order("start asc") }
 

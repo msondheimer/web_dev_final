@@ -17,14 +17,7 @@ all_convention_data = [ { :name => "Otakon",
 				 :expected_size => [29337, 30785, 34211, 37000],
 				 :start => ['2011-07-29', '2012-07-27', '2013-08-09', '2014-08-08'],
 				 :length => 3,
-         :photos => [[],[], [{photo: "http://whatweekly.com/wp-content/uploads/2013/08/otakon_2013-28.jpg", tags: []},
-    {photo: "http://omonomono.com/wp-content/uploads/DSC02376.jpg", tags: []},
-    {photo: "http://www.baltimoresun.com/media/photo/2013-08/76943002.jpg", tags: []},
-    {photo: "http://media2.abc2news.com//photo/2013/08/11/Otakon_2013_825370000_20130811201734_640_480.JPG", tags: []},
-    {photo: "http://darkroom.baltimoresun.com/wp-content/uploads/2013/08/20130810_143756.jpg", tags:[]},
-    {photo: "http://darkroom.baltimoresun.com/wp-content/uploads/2013/08/1.jpg", tags: []},
-    {photo: "http://www.geek.com/wp-content/uploads/2013/08/IMAG0186-590x333.jpg", tags: []}
-  ],[]]
+         :photos => [[],[], [],[]]
                 },
 
                 {name: "Gallifrey One",
@@ -72,8 +65,12 @@ all_convention_data.each do |convention_info|
     c.expected_size = size
     c.start = start
     c.end = Date.parse(start.to_s) + convention_info[:length] - 1
-    #c.find_coords 
-    c.save
+    c.find_coords
+    c.save(validate: false)
+    while c.lat == nil
+      c.find_coords
+      c.save(validate: false)
+    end
     photos.each do |ph|
       p = Photo.new
       p.photo_url = ph[:photo]
@@ -83,11 +80,9 @@ all_convention_data.each do |convention_info|
   end
 end
 
-blarg = Convention.where(lat: nil)
-blarg.each do |con|
-  con.find_coords
-  con.save
-end
+
+
+
 
 
 

@@ -10,7 +10,7 @@ class Photo < ActiveRecord::Base
 		:bucket => "CONpetence"
     	#:dropbox_credentials => Rails.root.join("config/dropbox.yml")
     	#, :dropbox_options => {...}
-	#validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
+	validates_attachment :picture, :content_type => {:content_type => /\Aimage\/.*\Z/}, :size => { :in => 0..5000.kilobytes }
 
 	belongs_to :convention
 	has_many :char_tags, dependent: :destroy
@@ -18,6 +18,7 @@ class Photo < ActiveRecord::Base
 	has_many :user_tags, dependent: :destroy
 	has_many :users, through: :user_tags
 	belongs_to :posting_user_id, foreign_key: :posting_user, class_name: "User"
+
 
 	def in_photo?(user_num)
 		if self.users.find_by(id: user_num)
@@ -33,12 +34,15 @@ class Photo < ActiveRecord::Base
 		s3 = AWS::S3.new(:access_key_id => creds["access_key_id"], 
 				:secret_access_key => creds['secret_access_key'])
 		puts s3
-		term = path.rindex("?")
-		path = path[0..(term-1)]
-		puts path
-		obj = s3.buckets['CONpetence'].objects[path]
-		puts obj
-		obj.delete
+		begin
+			term = path.rindex("?")
+			path = path[0..(term-1)]
+			puts path
+			obj = s3.buckets['CONpetence'].objects[path]
+			puts obj
+			obj.delete
+		rescue NoMethodError
+		end
 		s3 = nil
 		return 0
 	end
