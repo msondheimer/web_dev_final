@@ -43,13 +43,15 @@
 
       <!-- DISPLAY A SUBMIT BUTTON WITH A CLASS OF 'btn btn-primary' -->
       </div>
-</br>
-<div>
-<%= link_to 'Delete your profile', user_path(@user.id), method: 'delete', class: 'pull-right btn btn-large btn-danger' %>
-</div>
 
 </br>
-<%= link_to 'Back to your profile', "/users/#{@user.id}" %>
+<%= link_to 'Back to your profile', "/users/#{@user.id}", class: '' %>
+<div>
+</br>
+<%= link_to 'Delete your profile', "/users/#{@user.id}", method: 'delete', confirm: "You sure?", class: 'btn btn-danger' %>
+</div>
+
+
 
 <% end %>
 </div>  
