@@ -13,16 +13,22 @@
 
 
 <h2> Characters in this photo include: </h2>
-<div class="btn-group btn-group-justified">
+
 	<% @characters.each do |char| %>
 	<p> 
-		<%= link_to char.name, "/characters/#{char.id}", class: "btn btn-default" %> 
+        <div class="row">
+            <div class="col-md-1">
+		<%= link_to char.name, "/characters/#{char.id}" %> 
+        </div>
 		<% if not @guest %>
         <%= form_tag "/photos/#{@photo.id}/delete/#{@photo.char_tags.find_by(character_id: char).id}", method: :delete do %>
+        <div class="col-md-1">
 			<%= submit_tag 'Delete this character', class: "btn btn-success btn-sm" %>
         </div>
+        </table>
             <% end %>
 		<% end %>
+    </div>
 	</p>
 
 	<% end %>
@@ -46,18 +52,27 @@
 
 <div>
 <h2> Users in this photo include: </h2>
+
     <% @users.each do |user| %>
-    <p> 
+
+        <div class="row">
+            <div class="col-md-1">
         <%= user.name %> 
-    </p>
+    </div>
+  
 
     <% end %>
     <% if not @guest %>
         <div>
             <%= form_tag @link, method: @method do%>
-            <%= submit_tag @text, class: 'btn btn-success btn-large' %>
+             <div class="col-md-1">
+            <%= submit_tag @text, class: 'btn btn-success btn-sm' %>
+        </div>
             <% end %>
         </div>
+        </div>
+        <p>
+        </p>
     <% end %>
 
 <div>
