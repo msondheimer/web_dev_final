@@ -3,10 +3,10 @@ require 'json'
 
 class Convention < ActiveRecord::Base
 
-	validates :name, presence: true#, message: "You need to enter the name."
-	validates :genre, presence: true
-	validates :lat, presence: true
-	validates :lon, presence: true
+	validates_presence_of :name, message: "You need to enter a convention name."
+	validates_presence_of :genre, message: "Need to specify genre"
+	validates_presence_of :lat, message: "Need to specify a location"
+	#validates_presence_of :lon, message: "Need to specify state"
 	validate :start_before_end, :reasonable_time_span
 	validate :not_a_repeat
 

@@ -1,3 +1,5 @@
+#make it so lat lon error doesnt show up on search
+#change homepage to show only next 10 and past 3 cons
 class ConventionsController < ApplicationController
 
 	before_action :require_login, :only => [:create, :new_con_form, :add_photo, :new_photo]
