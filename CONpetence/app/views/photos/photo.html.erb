@@ -3,7 +3,7 @@
 
 <h1> <%="Here's a photo from #{@con.name} #{@con.find_year}" %> </h1>
 <% if @photo.posting_user %>
-    <h2> <%= "Thanks to #{@posting_user.name} for sharing it with us"%> </h2>
+    <h2> <%= "Thanks to " %> <%= link_to @posting_user.name, "/users/#{@posting_user.id}"%> <%=" for sharing it with us"%> </h2>
     <% end %>
 <div>
     	<div class="dan-big-chart">
@@ -48,7 +48,7 @@
 <h2> Users in this photo include: </h2>
     <% @users.each do |user| %>
     <p> 
-        <%= user.name %> 
+        <%= link_to user.name, "/users/#{user.id}" %> 
     </p>
 
     <% end %>
