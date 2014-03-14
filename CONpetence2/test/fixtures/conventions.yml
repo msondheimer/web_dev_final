@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  genre: MyString
+  city: MyString
+  venue: MyString
+  con_url: MyString
+  expected_size: 1
+  start: 2014-02-12 17:49:37
+  end: 2014-02-12 17:49:37
+
+two:
+  name: MyString
+  genre: MyString
+  city: MyString
+  venue: MyString
+  con_url: MyString
+  expected_size: 1
+  start: 2014-02-12 17:49:37
+  end: 2014-02-12 17:49:37

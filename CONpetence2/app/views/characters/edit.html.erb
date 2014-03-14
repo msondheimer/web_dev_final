@@ -1,0 +1,7 @@
+<h2> <%= "#{@char.name} cosplyaing tips" %> </h2>
+
+<%= form_tag "/characters/#{@char.id}", :method => "patch" do %>
+
+	<div> <%= text_area_tag :costume, @char.cosplaying %> </div>
+	<div> <%= submit_tag "Done editing" %> </div>
+<%end %>

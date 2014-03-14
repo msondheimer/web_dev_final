@@ -1,0 +1,21 @@
+<h2> <%= @char.name %> </h2>
+
+<div>  
+	<p> 
+		How to cosplay
+		<% if session[:user_id] %>
+		<%= link_to "edit", "/characters/#{@char.id}/edit", class: "btn btn-success" %>
+		<% end %>
+	</p>
+	<%= @char.cosplaying %>
+</div>
+
+<h3><%= "Here are the photos #{@char.name} appears in" %> </h3>
+
+<div>
+	<% @photos.each do |photo| %>
+    	<div class="dan-col-md-4 dan-chart dan-well">
+        	<%= link_to image_tag(photo.picture.url), "/photos/#{photo.id}" %>
+    	</div>
+	<% end %>
+</div>

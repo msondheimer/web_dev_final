@@ -1,0 +1,75 @@
+<%# Let's step up some form validation for this. Melissa has volunteered %>
+
+<div class='col-lg-6'>
+
+
+  <% if @con.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@con.errors.count, "error") %> prohibited this convention from being saved:</h2>
+ 
+    <ul>
+    <% @con.errors.each do |attr, msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @con do |f| %>
+      <div class="form-group">
+        <!-- DISPLAY A TITLE LABEL -->
+        <%= f.label "Name"%> <br/>
+        <%=f.text_field :name, :placeholder => "Con name" %>
+        <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
+      </div>
+      <div class="form-group">
+        <!-- DISPLAY A DESCRIPTION LABEL -->
+        <%= f.label "Type of Con"%><br/>
+        <%=f.select :genre, options_for_select(Convention.genre_opts), include_blank: true%>
+        <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
+      </div>
+      <div class="form-group">
+        <!-- DISPLAY A DESCRIPTION LABEL -->
+        <%= f.label "Where is it?"%><br/>
+        <%=f.text_field :city, :placeholder => "City, State" %><br/>
+        <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
+        <!-- DISPLAY A DESCRIPTION LABEL -->
+        <%=f.text_field :venue, :placeholder => "Venue" %>
+        <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
+      </div>
+      <div class="form-group">
+        <%= f.label "Start date" %> <br/>
+        <!-- DISPLAY A DESCRIPTION LABEL -->
+        <%=f.date_select :start%> <br/>
+        <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
+        <!-- DISPLAY A DESCRIPTION LABEL -->
+        <%= f.label "End date" %> <br/>
+        <%=f.date_select :end%>
+        <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
+      </div>
+      <div class="form-group">
+        <!-- DISPLAY A DESCRIPTION LABEL -->
+        <%= f.label "Does the con have a website" %> <br/>
+        <%=f.url_field :con_url, :placeholder => "be sure to include http://" %>
+        <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
+      </div>
+      <div class="form-group">
+        <!-- DISPLAY A DESCRIPTION LABEL -->
+        <%= f.label "How big do you expect it to be" %> <br/>
+        <%=f.number_field :expected_size, :in => 1..1000000%>
+        <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
+      </div>
+      <div class="form-group">
+        <!-- DISPLAY A DESCRIPTION LABEL -->
+        <%= f.label "Tell us about this convention." %> <br/>
+        <%=f.text_area :description, :placeholder => "Describe the con here"%>
+        <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
+      </div>
+      <div class="actions">
+      <%=f.submit "Submit", class: 'btn btn-success' %>
+      <!-- DISPLAY A SUBMIT BUTTON WITH A CLASS OF 'btn btn-primary' -->
+      </div>
+  <% end %>
+    </div> 
+
+

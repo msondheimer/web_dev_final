@@ -1,0 +1,23 @@
+<h1> <%= "#{@user.name}'s profile" %> </h1>
+
+ 
+<br><%= link_to "Edit Profile", "/users/#{@user.id}/edit"%></br>
+
+
+<div class="container">
+<h2> Photos posted by <%=@user.name%> </h2>
+	<% @posted_photos.each do |photo| %>
+    	<div class="dan-col-md-4 dan-chart dan-well">
+        	<%= link_to image_tag(photo.picture.url), "/photos/#{photo.id}" %>
+    	</div>
+	<% end %>
+</div>
+
+<div class="container">
+<h2> Photos <%=@user.name%> appears in</h2>
+	<% @photos_in.each do |photo| %>
+    	<div class="dan-col-md-4 dan-chart dan-well">
+        	<%= link_to image_tag(photo.picture.url), "/photos/#{photo.id}" %>
+    	</div>
+	<% end %>
+</div>
