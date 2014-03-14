@@ -1,3 +1,6 @@
+<div class="mel-padding ">
+<%= link_to "Back to all #{@con.name} photos", "/conventions/#{@con.id}/photos", method: 'get' %>
+
 <h1> <%="Here's a photo from #{@con.name} #{@con.find_year}" %> </h1>
 <% if @photo.posting_user %>
     <h2> <%= "Thanks to #{@posting_user.name} for sharing it with us"%> </h2>
@@ -10,12 +13,14 @@
 
 
 <h2> Characters in this photo include: </h2>
+<div class="btn-group btn-group-justified">
 	<% @characters.each do |char| %>
 	<p> 
-		<%= link_to char.name, "/characters/#{char.id}" %> 
+		<%= link_to char.name, "/characters/#{char.id}", class: "btn btn-default" %> 
 		<% if not @guest %>
         <%= form_tag "/photos/#{@photo.id}/delete/#{@photo.char_tags.find_by(character_id: char).id}", method: :delete do %>
-			<%= submit_tag 'Delete this character', class: "btn btn-success" %>
+			<%= submit_tag 'Delete this character', class: "btn btn-success btn-sm" %>
+        </div>
             <% end %>
 		<% end %>
 	</p>
@@ -71,4 +76,5 @@
 <%= submit_tag 'Delete this photo', class: "btn btn-warning" %>
 <% end %>
 <% end %>
+</div>
 </div>
