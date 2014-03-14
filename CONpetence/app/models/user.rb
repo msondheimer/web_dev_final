@@ -1,7 +1,15 @@
 class User < ActiveRecord::Base
+	attr_accessible :email, :name, :password, :password_confirmation, :password_digest
+	validates :name, presence: true
+	validates :name, uniqueness: true#, message: "You need to enter the name."
+	validates :email, presence: true
+	validates :email, uniqueness: true
+	validates :password, presence: true, on: :create 
+	#validates :has_secure_password, presence: true
+	has_secure_password
+
 	before_destroy :nilif_posted_photos
 
-	has_secure_password
 	has_many :user_tags, dependent: :destroy
 	has_many :photos, through: :user_tags
 	has_many :posted_photos, foreign_key: :posting_user, class_name: "Photo"
@@ -13,4 +21,18 @@ class User < ActiveRecord::Base
 			ph.save
 		end
 	end
+
+	def find_name(id)
+		u = User.find(id)
+		return u.name
+	end
+
+	def find_name(id)
+		u = User.find(id)
+		return u.name
+	end
+		
+		
+
+
 end

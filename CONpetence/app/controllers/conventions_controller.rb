@@ -18,6 +18,18 @@ class ConventionsController < ApplicationController
 	end
 
 
+	def future_conventions
+		@cons = Convention.future
+		render 'conventions'
+	end
+
+	def past_conventions
+		@cons = Convention.past
+		render 'conventions'
+	end
+
+
+
 	def search_results
 		@search = true
 		@message = "Showing #{params[:genre]} conventions"
@@ -37,12 +49,6 @@ class ConventionsController < ApplicationController
 				.search_name(params[:name]).within(params[:loc], params[:dist].to_f)
 		render 'conventions'
 	end
-
-	# def filter
-	# 	@cons = Convention.genre(params[:genre]).has_time.order("start asc")
-	# 	render 'conventions'
-	# end
-
 
 	def filter
 		#@search = false
@@ -96,18 +102,21 @@ class ConventionsController < ApplicationController
 	end
 
 	def create
-		c = Convention.new
-		c.name = params["convention"]["name"]
-		c.genre = params['convention']['genre']
-		c.city = params['convention']['city']
-		c.venue = params['convention']['venue']
-		c.expected_size = params['convention']['expected_size']
-		c.con_url = params["convention"]["con_url"]
-		c.start = "#{params['convention']['start(1i)']}-#{params['convention']['start(2i)']}-#{params['convention']['start(3i)']}"
-		c.end = "#{params['convention']['end(1i)']}-#{params['convention']['end(2i)']}-#{params['convention']['end(3i)']}"
-		c.description = params['convention']['description']
-		c.save
-		redirect_to '/conventions'
+		@con = Convention.new
+		@con.name = params["convention"]["name"]
+		@con.genre = params['convention']['genre']
+		@con.city = params['convention']['city']
+		@con.venue = params['convention']['venue']
+		@con.expected_size = params['convention']['expected_size']
+		@con.con_url = params["convention"]["con_url"]
+		@con.start = "#{params['convention']['start(1i)']}-#{params['convention']['start(2i)']}-#{params['convention']['start(3i)']}"
+		@con.end = "#{params['convention']['end(1i)']}-#{params['convention']['end(2i)']}-#{params['convention']['end(3i)']}"
+		@con.description = params['convention']['description']
+		if @con.save
+			redirect_to '/conventions'
+		else
+			render 'new_con'
+		end
 	end
 
 

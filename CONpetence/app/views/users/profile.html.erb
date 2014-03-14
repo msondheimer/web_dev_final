@@ -1,5 +1,9 @@
 <h1> <%= "#{@user.name}'s profile" %> </h1>
 
+ 
+<br><%= link_to "Edit Profile", "/users/edit/#{@user.id}"%></br>
+
+
 <div class="container">
 <h2> Photos posted by <%=@user.name%> </h2>
 	<% @posted_photos.each do |photo| %>

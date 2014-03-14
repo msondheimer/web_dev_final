@@ -14,7 +14,7 @@ class PhotosController < ApplicationController
 			redirect_to "/conventions"
 		else
 			@con = @photo.convention
-			@characters = @photo.characters
+			@characters = @photo.characters.order("name asc")
 			@users = @photo.users
 			@guest = true
 			@posting_user = User.find_by(id: @photo.posting_user)

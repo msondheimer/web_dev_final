@@ -20,8 +20,11 @@ CONpetence::Application.routes.draw do
 
   get '/conventions/filter/:genre' => 'conventions#filter'
 
+  get '/conventions/future_conventions' => 'conventions#future_conventions'
+  get '/conventions/past_conventions' => 'conventions#past_conventions'
 
 
+  get '/users/new' => 'users#new_user_form'
   get '/conventions/new' => 'conventions#new_con_form'
 
   get '/conventions/:con_id/photos' => 'conventions#browse_photos'
@@ -33,8 +36,10 @@ CONpetence::Application.routes.draw do
   delete '/photos/:photo_id/untagme' => 'photos#toast_user'
   post '/photos/:photo_id/tagme' => 'photos#tag_user'
 
-  resources :users, only: [:new, :create, :show]
+  resources :users
   resources :sessions
+  resources :characters, except: [:delete]
+
 
 
   

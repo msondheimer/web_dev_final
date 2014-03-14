@@ -3,7 +3,7 @@ require 'json'
 
 class Convention < ActiveRecord::Base
 
-	validates :name, presence: true#, message: "You need to enter the name."}
+	validates :name, presence: true#, message: "You need to enter the name."
 	validates :genre, presence: true
 	validates :lat, presence: true
 	validates :lon, presence: true
@@ -52,12 +52,6 @@ class Convention < ActiveRecord::Base
 		end
 	end
 
-
-
-
-	#Go to google to find coords
-	#after_save
-
 	before_validation :find_coords
 
 	has_many :photos, dependent: :destroy
@@ -97,18 +91,22 @@ class Convention < ActiveRecord::Base
 	def Convention.genres
 		return ['Anime', 'Comics', 'Sci-Fi', 'Gaming', 'Steampunk', 'Specific Franchise', 'Multigenre', 'Horror'].sort
 	end
+
 	def Convention.genre_opts
-		# if Convention.genres == 'All'
-		# 	return Convention.genres.zip
-		# end
 		return Convention.genres.zip(Convention.genres)
 	end
 
+	
+
 	scope :future, -> {where("end >= ?", Time.now).order("start asc")}
 
-	scope :past, -> {where("start <= ?", Time.now).order("start desc")}
+	#scope :past, -> {where("start <= ?", Time.now).order("start desc")}
+	scope :past, -> {where("start <= ?", Time.now).order("start asc")}
 
 	scope :present, ->{future.past} 
+
+	#scope :from, ->(duration){ where('start > ?', Time.zone.today - duration ).order("start asc") }
+
 
 	def Convention.genre(gen)
 		if gen == 'All'

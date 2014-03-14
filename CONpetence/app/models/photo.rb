@@ -1,5 +1,7 @@
 class Photo < ActiveRecord::Base
 
+	attr_accessible :picture
+
 	before_destroy :del_from_s3
 
 	has_attached_file :picture, 

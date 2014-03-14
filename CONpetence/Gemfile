@@ -32,6 +32,8 @@ gem "paperclip", "~> 3.0"
 gem 'aws-s3'
 gem 'aws-sdk', '~> 1.6.9'
 
+#gem 'plugger'
+
 #gem 'paperclip-aws'
 #gem "paperclip-dropbox", ">= 1.1.7"
 
@@ -44,6 +46,8 @@ end
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
+
+gem 'protected_attributes'
 
 # Use unicorn as the app server
 # gem 'unicorn'
