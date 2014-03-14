@@ -8,7 +8,7 @@
     <h2><%= pluralize(@con.errors.count, "error") %> prohibited this convention from being saved:</h2>
  
     <ul>
-    <% @con.errors.full_messages.each do |msg| %>
+    <% @con.errors.each do |attr, msg| %>
       <li><%= msg %></li>
     <% end %>
     </ul>
@@ -66,7 +66,7 @@
         <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
       </div>
       <div class="actions">
-      <%=f.submit "Submit" %>
+      <%=f.submit "Submit", class: 'btn btn-success' %>
       <!-- DISPLAY A SUBMIT BUTTON WITH A CLASS OF 'btn btn-primary' -->
       </div>
   <% end %>
