@@ -20,6 +20,9 @@ CONpetence::Application.routes.draw do
 
   get '/conventions/filter/:genre' => 'conventions#filter'
 
+  get '/conventions/future_conventions' => 'conventions#future_conventions'
+  get '/conventions/past_conventions' => 'conventions#past_conventions'
+
 
   get '/users/new' => 'users#new_user_form'
   get '/conventions/new' => 'conventions#new_con_form'

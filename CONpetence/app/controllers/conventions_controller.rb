@@ -18,6 +18,18 @@ class ConventionsController < ApplicationController
 	end
 
 
+	def future_conventions
+		@cons = Convention.future
+		render 'conventions'
+	end
+
+	def past_conventions
+		@cons = Convention.past
+		render 'conventions'
+	end
+
+
+
 	def search_results
 		@search = true
 		@message = "Showing #{params[:genre]} conventions"
