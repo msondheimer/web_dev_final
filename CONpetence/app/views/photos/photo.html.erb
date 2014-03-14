@@ -90,7 +90,7 @@
 
 <% if @photo.posting_user == session[:user_id]  and session[:user_id]%>
 <%= form_tag "/photos/#{@photo.id}/delete" , method: :delete do %>
-<%= submit_tag 'Delete this photo', class: "btn btn-warning" %>
+<%= submit_tag 'Delete this photo', confirm: "You sure?", class: 'btn btn-danger' %>
 <% end %>
 <% end %>
 </div>
