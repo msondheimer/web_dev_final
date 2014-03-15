@@ -38,7 +38,6 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
 
-          <li><%= link_to "View all Conventions", "/conventions" %></li>
           <li><%= link_to "View Characters", "/characters" %></li>
 
         <!--Conventions, Past Conventions, Future Convertions, Search Convetions --> 
@@ -47,6 +46,7 @@
         <ul class="dropdown-menu">
           <li><a href="#"><%= link_to "Search Cons", "/conventions/search" %></a></li>
           <li class="divider"></li>
+          <li><a href="#"><%= link_to "View all Conventions", "/conventions" %></a></li>
           <li><a href="#"><%= link_to "Future Cons", "/conventions/future_conventions" %></a></li>
           <li><a href="#"><%= link_to "Past Cons", "/conventions/past_conventions" %></a></li>
           <% if session[:user_id] %>
@@ -60,7 +60,6 @@
         <% if session[:user_id].blank? %>
           <li><%= link_to "Sign Up", "/users/new"%></li>
           <li><%= link_to "Sign In", new_session_url %></li>
-
           <% else %>
           <li><%= link_to  "Logged in as #{User.find(session[:user_id]).name}", "/users/#{session[:user_id]}" %> </li>
           <li><%= link_to "Sign Out", "/signout", method: 'delete' %></li>

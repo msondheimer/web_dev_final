@@ -13,11 +13,13 @@
 		<% end %>
 	<% end %>
 
-</div>
 
 <p> <%= @con.description %> </p>
+</div>
 
 <% if @con.start < Time.now %>
-	<p> <%= link_to "View photos from con", "/conventions/#{@con.id}/photos", class: 'btn btn-success pull-center add' %>
-	<%= link_to "View all Conventions", "/conventions", class: 'btn btn-success pull-center add' %></p>
-<% end %>
+	<%= link_to "View photos from con", "/conventions/#{@con.id}/photos", class: 'btn btn-success pull-center add' %>
+	<% end %>
+	<%= link_to "View all Conventions", "/conventions", class: 'btn btn-success pull-center add' %>
+
+

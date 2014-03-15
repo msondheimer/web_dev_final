@@ -19,23 +19,31 @@
       <div class="form-group">
         <!-- DISPLAY A TITLE LABEL -->
         <%= label_tag "Username"%> <br/>
+        <p class="text-muted">
         <%= text_field_tag :name, @user.name, :placeholder => "#{@user.find_name(@user.id)}" %><br/>
+      </p>
         <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
       </div>
 
       <div class="form-group">
       <%= label_tag :email %><br/>
+      <p class="text-muted">
       <%= text_field_tag :email, @user.email, placeholder: "#{@user.email}" %>
+    </p>
      </div>
 
      <div class="form-group">
     <%= label_tag :password %><br/>
+    <p class="text-muted">
     <%= password_field_tag :password, @user.password%>
+  </p>
     </div>
 
       <div class="form-group">
     <%= label_tag :password_confirmation %><br/>
+    <p class="text-muted">
     <%= password_field_tag :password_confirmation, @user.password_confirmation %>
+  </p>
     </div>
 
       <div class="actions">

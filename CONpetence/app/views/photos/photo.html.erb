@@ -40,10 +40,10 @@
     	<%= form_tag "/photos/#{@photo.id}/addchar", method: :post do%>
     	 <div class ="form-group">
     	 	<div id="dan-submit">
-    	 <%= submit_tag 'Add Character Tag', class: 'pull-left btn btn-success btn-large' %>
+    	 <%= submit_tag 'Add Character Tag', class: 'pull-left btn btn-success' %>
     	</div>
     	<div id="dan-characters">
-         <%= select_tag :character_id, options_from_collection_for_select(Character.all.order('name asc'), :id, :name), class: 'form-control' %>
+         <%= select_tag :character_id, options_from_collection_for_select(Character.all.order('name asc'), :id, :name), class: 'form-control ' %>
      </div>
      </div>
       
@@ -56,42 +56,35 @@
     <% @users.each do |user| %>
 
 
-        <div class="row">
-            <div class="col-md-1">
-
+   
+<p>
         <%= link_to user.name, "/users/#{user.id}" %> 
-    </div>
+    </p>
 
 
     <% end %>
     <% if not @guest %>
-        <div>
+      
             <%= form_tag @link, method: @method do%>
-             <div class="col-md-1">
-            <%= submit_tag @text, class: 'btn btn-success btn-sm' %>
-        </div>
+         
+            <div class="row">
+            <div class="col-md-1">
+            <%= submit_tag @text, class: 'btn btn-success' %>
+            </div>
             <% end %>
-        </div>
-        </div>
-        <p>
-        </p>
+
+  
     <% end %>
 
-<div>
-
-</div>
 
 
-
-</div>
-
-
-<div>
 
 <% if @photo.posting_user == session[:user_id]  and session[:user_id]%>
 <%= form_tag "/photos/#{@photo.id}/delete" , method: :delete do %>
+<div class="col-md-1">
 <%= submit_tag 'Delete this photo', confirm: "You sure?", class: 'btn btn-danger' %>
-<% end %>
-<% end %>
 </div>
 </div>
+<% end %>
+<% end %>
+

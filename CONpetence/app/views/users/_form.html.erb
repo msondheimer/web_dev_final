@@ -18,24 +18,32 @@
       <div class="form-group">
         <!-- DISPLAY A TITLE LABEL -->
         <%= f.label "Name"%> <br/>
-        <%=f.text_field :name, :placeholder => " Username" %><br/>
+        <p class="text-muted">
+        <%=f.text_field :name, :placeholder => "Name" %><br/>
+      </p>
         <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
       </div>
       <div class="form-group">
         <!-- DISPLAY A DESCRIPTION LABEL -->
         <%= f.label "E-mail"%> <br/>
-         <%=f.text_field :email, :placeholder => " email" %>
+        <p class="text-muted">
+         <%=f.text_field :email, :placeholder => "E-mail" %>
+       </p>
         <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
       </div>
       <div class="form-group">
         <!-- DISPLAY A DESCRIPTION LABEL -->
         <%= f.label "Password"%> <br/>
+        <p class="text-muted">
         <%=f.password_field :password, :placeholder => "Password" %><br/>
         <!-- DISPLAY A TEXT FIELD AND ATTACH THE CLASS OF 'form-control' TO THIS FIELD -->
+      </p>
       </div>
       <div class="form-group">
         <%= f.label "Password Confirmation"%> <br/>
+        <p class="text-muted">
         <%=f.password_field :password_confirmation, :placeholder => "Password"%> 
+      </p>
       </div>
       <div class="actions">
       <%=f.submit "Submit" , class: 'btn-success'%>

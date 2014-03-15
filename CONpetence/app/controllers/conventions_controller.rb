@@ -13,9 +13,8 @@ class ConventionsController < ApplicationController
     end
 
 	def browse_cons
-		#@search = false
 		@genre_name = 'All'
-		@cons = Convention.all.has_time.order("start asc")
+		@cons = Convention.home
 		render 'conventions'
 	end
 
@@ -29,8 +28,6 @@ class ConventionsController < ApplicationController
 		@cons = Convention.past
 		render 'conventions'
 	end
-
-
 
 	def search_results
 		@search = true
@@ -53,8 +50,6 @@ class ConventionsController < ApplicationController
 	end
 
 	def filter
-		#@search = false
-		#@cons = Convention.find_by(:genre => params[:genre])
 		@genre_name = params[:genre]
 		@cons = Convention.genre(@genre_name).has_time.order("start asc")
 		render 'conventions'
