@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140313201322) do
+ActiveRecord::Schema.define(version: 20140315004808) do
 
   create_table "appearances", force: true do |t|
     t.integer  "character_id"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20140313201322) do
     t.string   "con_url"
     t.integer  "expected_size"
     t.datetime "start"
-    t.datetime "end"
+    t.datetime "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "lat"

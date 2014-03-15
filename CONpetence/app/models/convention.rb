@@ -13,7 +13,7 @@ class Convention < ActiveRecord::Base
 	def start_before_end
 		r = false
 		begin
-			r = self.start <= self.end
+			r = self.start <= self.end_date
 		rescue NoMethodError
 			r = false
 		end
@@ -25,12 +25,12 @@ class Convention < ActiveRecord::Base
 	def reasonable_time_span
 		r = false
 		begin 
-			r = self.end.to_date.mjd - self.start.to_date.mjd < 7
+			r = self.end_date.to_date.mjd - self.start.to_date.mjd < 7
 		rescue NoMethodError
 			r = false
 		end
 		if not r
-			errors.add(:end, "Con can't be over a week long")
+			errors.add(:end_date, "Con can't be over a week long")
 		end
 	end
 
@@ -41,7 +41,7 @@ class Convention < ActiveRecord::Base
 			there = 1
 		end
 		start = self.start - 2.days
-		fin = self.end + 2.days
+		fin = self.end_date + 2.days
 		date_hash = {}
 		[start, fin].each do |d|
 			date_hash[d] = "#{d.year}-#{d.month}-#{d.day}"
@@ -98,7 +98,7 @@ class Convention < ActiveRecord::Base
 
 	
 
-	scope :future, -> {where("end >= ?", Time.now).order("start asc")}
+	scope :future, -> {where("end_date >= ?", Time.now).order("start asc")}
 
 	#scope :past, -> {where("start <= ?", Time.now).order("start desc")}
 	scope :past, -> {where("start <= ?", Time.now).order("start desc")}
@@ -131,7 +131,7 @@ class Convention < ActiveRecord::Base
 
 	scope :search_array, -> (arr) {where(id: arr)}
 
-	scope :after, -> (date) {where("end >= ?", Date::strptime(date, "%Y-%m-%d")).order("start asc")}
+	scope :after, -> (date) {where("end_date >= ?", Date::strptime(date, "%Y-%m-%d")).order("start asc")}
 
 	scope :before, -> (date) {where("start <= ?", Date::strptime(date, "%Y-%m-%d")).order("start asc")}
 
@@ -175,8 +175,8 @@ class Convention < ActiveRecord::Base
 	end
 
 	def find_year
-		if self.start.year != self.end.year
-			return "#{self.start.year}-#{self.end.year}"
+		if self.start.year != self.end_date.year
+			return "#{self.start.year}-#{self.end_date.year}"
 		else
 			return "#{self.start.year}"
 		end

@@ -2,7 +2,7 @@
 
 <div class="mel-padding ">
 <h2> 
-	<% if @con.end > Time.now %>
+	<% if @con.end_date > Time.now %>
 		<%= link_to "#{@con.name} #{@con.find_year}", @con.con_url %>
 	</h2>
 	<% else %>
