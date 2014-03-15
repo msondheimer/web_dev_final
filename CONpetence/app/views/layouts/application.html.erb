@@ -44,13 +44,29 @@
         <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Conventions <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="#"><%= link_to "Search Cons", "/conventions/search" %></a></li>
+          <li><%= link_to "Search Cons", "/conventions/search" %></li>
           <li class="divider"></li>
-          <li><a href="#"><%= link_to "View all Conventions", "/conventions" %></a></li>
-          <li><a href="#"><%= link_to "Future Cons", "/conventions/future_conventions" %></a></li>
-          <li><a href="#"><%= link_to "Past Cons", "/conventions/past_conventions" %></a></li>
+          <li><%= link_to "View all Conventions", "/conventions" %></li>
+          <li><%= link_to "Future Cons", "/conventions/future_conventions" %></li>
+          <li><%= link_to "Past Cons", "/conventions/past_conventions" %></li>
           <% if session[:user_id] %>
-          <li><a href="#"><%= link_to "Add New Con", "/conventions/new"  %></a></li>
+          <li><%= link_to "Add New Con", "/conventions/new"  %></li>
+          <% end %>
+        </ul>
+      </li>
+
+  
+
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Characters <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><%= link_to "View Characters", "/characters" %></li>
+          <li class="divider"></li>
+         
+  
+          <% if session[:user_id] %>
+           <li><%= link_to "Add a Character", "/characters/new" %></li>
+  
           <% end %>
         </ul>
       </li>

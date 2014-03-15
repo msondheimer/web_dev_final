@@ -1,3 +1,4 @@
+<div class="mel-padding ">
 <h2>Which character's page would you like to go to?</h2>
 
 <% @chars.each do |char|%>
@@ -7,3 +8,4 @@
 <% if session[:user_id] %>
 <p> <%= link_to "Add a new character", "/characters/new", class: "btn btn-success" %> </p>
 <% end %>
+</div>
