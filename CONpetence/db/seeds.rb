@@ -64,7 +64,7 @@ all_convention_data.each do |convention_info|
     c.con_url = convention_info[:con_url]
     c.expected_size = size
     c.start = start
-    c.end = Date.parse(start.to_s) + convention_info[:length] - 1
+    c.end_date = Date.parse(start.to_s) + convention_info[:length] - 1
     c.find_coords
     c.save(validate: false)
     while c.lat == nil

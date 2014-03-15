@@ -107,7 +107,7 @@ class ConventionsController < ApplicationController
 		@con.expected_size = params['convention']['expected_size']
 		@con.con_url = params["convention"]["con_url"]
 		@con.start = "#{params['convention']['start(1i)']}-#{params['convention']['start(2i)']}-#{params['convention']['start(3i)']}"
-		@con.end = "#{params['convention']['end(1i)']}-#{params['convention']['end(2i)']}-#{params['convention']['end(3i)']}"
+		@con.end_date = "#{params['convention']['end_date(1i)']}-#{params['convention']['end_date(2i)']}-#{params['convention']['end_date(3i)']}"
 		@con.description = params['convention']['description']
 		if @con.save
 			redirect_to '/conventions'

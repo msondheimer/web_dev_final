@@ -4,6 +4,8 @@ CONpetence::Application.routes.draw do
 
   delete '/signout' => 'sessions#destroy'
 
+  post '/conventions' => 'conventions#create'
+
   get '/conventions/:con_id/photos' => 'conventions#browse_photos'
   get 'conventions/search/results' => 'conventions#search_results'
   get 'conventions/search' => 'conventions#search'
@@ -18,7 +20,7 @@ CONpetence::Application.routes.draw do
 
   post '/conventions/filter' => 'conventions#filter'
   post '/conventions/:con_id/photos/newphoto' => 'conventions#new_photo'
-  post '/conventions' => 'conventions#create'
+
   
   get '/photos/:photo_id' => 'photos#show'
   get '/photos' => 'photos#redir_to_cons'
@@ -30,7 +32,7 @@ CONpetence::Application.routes.draw do
   delete '/photos/:photo_id/delete' => 'photos#toast_photo'
   delete '/photos/:photo_id/untagme' => 'photos#toast_user'
   
-  resources :conventions 
+  #resources :conventions 
   resources :users 
   resources :sessions
   resources :characters, except: [:delete]

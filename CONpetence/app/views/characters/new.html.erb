@@ -1,15 +1,23 @@
+<div class="mel-padding ">
 <h2> Add a character </h2>
 
 <%= form_tag "/characters", :method => 'post' do %>
 	<div>
 		<p> What's this character's name ?</p>
+		<p class="text-muted">
 		<%= text_field_tag :name %>
+	</p>
 	</div>
 
 	<div>
 		<p> And do you have any tips for cosplaying as this character? </p>
-		<%= text_area_tag :cosplaying %>
+		<p class="text-muted">
+		
+		<%= text_area_tag :cosplaying, "", rows: 5, cols: 50 %>
+
+	</p>
 	</div>
 
-	<%= submit_tag "Add The Character!" %>
+	<%= submit_tag "Add The Character!",class: "btn btn-success" %>
 <% end %>
+</div>
