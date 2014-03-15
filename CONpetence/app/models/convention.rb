@@ -71,6 +71,7 @@ class Convention < ActiveRecord::Base
 
 	def find_coords
 		if self.city == nil
+			puts "Not working"
 			self.lat = nil
 			self.lon = nil
 		else
