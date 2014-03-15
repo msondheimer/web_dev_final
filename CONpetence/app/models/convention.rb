@@ -105,9 +105,9 @@ class Convention < ActiveRecord::Base
 
 	scope :present, ->{future.past} 
 
-	def Convention.home
-		early = Convention.past.limit(3).first.start
-		Convention.all.where("start >= ?", early).order("start asc").limit(13)
+	def Convention.home(gen="All")
+		early = Convention.genre(gen).past.limit(3).last.start
+		Convention.genre(gen).where("start >= ?", early).limit(13).order("start asc")
 	end
 
 	#scope :from, ->(duration){ where('start > ?', Time.zone.today - duration ).order("start asc") }
@@ -115,9 +115,9 @@ class Convention < ActiveRecord::Base
 
 	def Convention.genre(gen)
 		if gen == 'All'
-			all().order("start asc")
+			all()
 		else
-			where("genre = ?", gen).order("start asc")
+			where("genre = ?", gen)
 		end
 	end
 

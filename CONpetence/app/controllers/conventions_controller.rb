@@ -51,7 +51,7 @@ class ConventionsController < ApplicationController
 
 	def filter
 		@genre_name = params[:genre]
-		@cons = Convention.genre(@genre_name).has_time.order("start asc")
+		@cons = Convention.home(@genre_name).has_time.order("start asc")
 		render 'conventions'
 	end
 
