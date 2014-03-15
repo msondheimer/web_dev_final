@@ -1,4 +1,6 @@
 class Character < ActiveRecord::Base
+	validates_presence_of :name
+
 	has_many :char_tags, dependent: :destroy
 	has_many :photos, through: :char_tags
 	has_many :appearances, dependent: :destroy
