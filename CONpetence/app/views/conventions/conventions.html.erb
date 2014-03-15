@@ -18,8 +18,11 @@
 		<h2> <%= link_to "#{con.name} #{con.find_year}", "/conventions/#{con.id}" %> </h2>
 		<h3> <%= "Type: #{con.genre}" %> </h3>
 		<p> <%= "From #{con.start.strftime("%B %d, %Y")} to #{con.end_date.strftime("%B %d, %Y")}" %> </p>
-		<p> <%= "Expected Size: #{con.expected_size}" %> </p>
-		<p> <%= "Location: #{con.venue}, #{con.city}" %> </p>
+		<% if con.expected_size %>
+		<p> <%= "Expected Size: #{number_with_delimiter(con.expected_size, :delimiter => ',')}" %> </p>
+		<% end %>
+
+		<p> <%= "Location: #{con.venue}#{(con.venue ? ', ' : '')}#{con.city}" %> </p>
 	</div>
 <% end %>
 </div>

@@ -1,8 +1,9 @@
+<div class="mel-padding ">
 <h2> <%= @char.name %> </h2>
 
 <div>  
 	<p> 
-		How to cosplay
+		<h3><u>How to cosplay</u></h3>
 		<% if session[:user_id] %>
 		<%= link_to "edit", "/characters/#{@char.id}/edit", class: "btn btn-success" %>
 		<% end %>
@@ -10,7 +11,7 @@
 	<%= @char.cosplaying %>
 </div>
 
-<h3><%= "Here are the photos #{@char.name} appears in" %> </h3>
+<h3><u><%= "Here are the photos #{@char.name} appears in" %> </u></h3>
 
 <div>
 	<% @photos.each do |photo| %>
@@ -18,4 +19,5 @@
         	<%= link_to image_tag(photo.picture.url), "/photos/#{photo.id}" %>
     	</div>
 	<% end %>
+</div>
 </div>
