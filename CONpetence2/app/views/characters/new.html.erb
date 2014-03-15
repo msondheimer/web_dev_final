@@ -1,0 +1,15 @@
+<h2> Add a character </h2>
+
+<%= form_tag "/characters", :method => 'post' do %>
+	<div>
+		<p> What's this character's name ?</p>
+		<%= text_field_tag :name %>
+	</div>
+
+	<div>
+		<p> And do you have any tips for cosplaying as this character? </p>
+		<%= text_area_tag :cosplaying %>
+	</div>
+
+	<%= submit_tag "Add The Character!" %>
+<% end %>

@@ -1,0 +1,13 @@
+<p> <%= link_to "Add a photo", "/conventions/#{@con.id}/photos/add", class: 'btn btn-success pull-center add' %>
+<%= link_to "Back to #{@con.name}", "/conventions/#{@con.id}", class: 'btn btn-success pull-center add' %>
+<%= link_to "View all Conventions", "/conventions", class: 'btn btn-success pull-center add' %>
+</p>
+
+<div>
+	<% @photos.each do |photo| %>
+    	<div class="dan-col-md-4 dan-chart dan-well">
+        	<%= link_to image_tag(photo.picture.url), "/photos/#{photo.id}", method: 'get' %>
+    	</div>
+	<% end %>
+</div>
+

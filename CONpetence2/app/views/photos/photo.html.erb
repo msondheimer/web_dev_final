@@ -1,0 +1,97 @@
+<div class="mel-padding ">
+<%= link_to "Back to all #{@con.name} photos", "/conventions/#{@con.id}/photos", method: 'get' %>
+
+<h1> <%="Here's a photo from #{@con.name} #{@con.find_year}" %> </h1>
+<% if @photo.posting_user %>
+    <h2> <%= "Thanks to " %> <%= link_to @posting_user.name, "/users/#{@posting_user.id}"%> <%=" for sharing it with us"%> </h2>
+    <% end %>
+<div>
+        <div class="dan-big-chart">
+            <%= link_to image_tag(@photo.picture.url), @photo.picture.url%>
+        </div>
+
+
+
+<h2> Characters in this photo include: </h2>
+
+	<% @characters.each do |char| %>
+	<p> 
+        <div class="row">
+            <div class="col-md-1">
+		<%= link_to char.name, "/characters/#{char.id}" %> 
+        </div>
+		<% if not @guest %>
+        <%= form_tag "/photos/#{@photo.id}/delete/#{@photo.char_tags.find_by(character_id: char).id}", method: :delete do %>
+        <div class="col-md-1">
+			<%= submit_tag 'Delete this character', class: "btn btn-success btn-sm" %>
+        </div>
+        </table>
+            <% end %>
+		<% end %>
+    </div>
+	</p>
+
+	<% end %>
+
+	<div>
+<% if not @guest %>
+<div class="row">
+	<div class="col-md-4">
+    	<%= form_tag "/photos/#{@photo.id}/addchar", method: :post do%>
+    	 <div class ="form-group">
+    	 	<div id="dan-submit">
+    	 <%= submit_tag 'Add Character Tag', class: 'pull-left btn btn-success btn-large' %>
+    	</div>
+    	<div id="dan-characters">
+         <%= select_tag :character_id, options_from_collection_for_select(Character.all.order('name asc'), :id, :name), class: 'form-control' %>
+     </div>
+     </div>
+      
+    	<% end %>
+    </div><% end %></div>
+
+<div>
+<h2> Users in this photo include: </h2>
+
+    <% @users.each do |user| %>
+
+
+        <div class="row">
+            <div class="col-md-1">
+
+        <%= link_to user.name, "/users/#{user.id}" %> 
+    </div>
+
+
+    <% end %>
+    <% if not @guest %>
+        <div>
+            <%= form_tag @link, method: @method do%>
+             <div class="col-md-1">
+            <%= submit_tag @text, class: 'btn btn-success btn-sm' %>
+        </div>
+            <% end %>
+        </div>
+        </div>
+        <p>
+        </p>
+    <% end %>
+
+<div>
+
+</div>
+
+
+
+</div>
+
+
+<div>
+
+<% if @photo.posting_user == session[:user_id]  and session[:user_id]%>
+<%= form_tag "/photos/#{@photo.id}/delete" , method: :delete do %>
+<%= submit_tag 'Delete this photo', confirm: "You sure?", class: 'btn btn-danger' %>
+<% end %>
+<% end %>
+</div>
+</div>
